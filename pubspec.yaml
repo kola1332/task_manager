@@ -10,6 +10,7 @@ dependencies:
   dotted_border: ^2.0.0+3
   flutter:
     sdk: flutter
+  timeline_tile: ^2.0.0
 
 dev_dependencies:
   flutter_test:

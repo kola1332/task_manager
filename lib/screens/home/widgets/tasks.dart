@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/models/task.dart';
+import 'package:task_manager/screens/detail/detail.dart';
 
 class Tasks extends StatelessWidget {
   final tasksList = Task.generateTasks();
@@ -38,45 +39,51 @@ class Tasks extends StatelessWidget {
   }
 
   Widget _buildTask(BuildContext context, Task task) {
-    return Container(
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: task.bgColor,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(
-            task.iconData,
-            color: task.iconColor,
-            size: 35,
-          ),
-          const SizedBox(height: 25),
-          Text(
-            task.title!,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Detailpage(task)));
+      },
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: task.bgColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(
+              task.iconData,
+              color: task.iconColor,
+              size: 35,
             ),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              _buildTaskStatus(
-                task.btnColor!,
-                task.iconColor!,
-                '${task.left} left',
+            const SizedBox(height: 25),
+            Text(
+              task.title!,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(width: 5),
-              _buildTaskStatus(
-                Colors.white,
-                task.iconColor!,
-                '${task.done} done',
-              ),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                _buildTaskStatus(
+                  task.btnColor!,
+                  task.iconColor!,
+                  '${task.left} left',
+                ),
+                const SizedBox(width: 5),
+                _buildTaskStatus(
+                  Colors.white,
+                  task.iconColor!,
+                  '${task.done} done',
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
