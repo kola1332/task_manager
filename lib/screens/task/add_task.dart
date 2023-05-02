@@ -78,19 +78,33 @@ class _AddTaskState extends State<AddTask> {
                 ],
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15,right: 15),
+                    child: TextField( controller: widget.controller,
+                          decoration: const InputDecoration(
+                            // labelText: 'name',
+                          ),
+                          onSubmitted: (String name) {
+                            setState(() {
+                              data = name;
+                              newDesk['title'] = name;
+                            });
+                          },),
+                  ),
                   Row(
                     children: [SizedBox(width: 20),
-                      Text(
-                        '$data',
-                        style: const TextStyle(
-                          color: Color.fromARGB(255, 27, 27, 27),
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      // Text(
+                      //   '$data',
+                      //   style: const TextStyle(
+                      //     color: Color.fromARGB(255, 27, 27, 27),
+                      //     fontSize: 26,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
+                      
                     ],
                   ),
                   const SizedBox(height: 20),
