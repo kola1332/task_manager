@@ -6,10 +6,12 @@ import 'package:task_manager/screens/home/widgets/tasks.dart';
 import '../task/add_task.dart';
 
 class HomePage extends StatelessWidget {
+  var tasksList;
+  HomePage([this.tasksList]);
 
   @override
   Widget build(BuildContext context) {
-  final tasksList = Task.generateTasks();
+    tasksList ??= Task.generateTasks();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _buildAppBar(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/task.dart';
+import '../home/home.dart';
 
 class AddTask extends StatefulWidget {
   TextEditingController controller = TextEditingController();
@@ -21,7 +22,6 @@ class _AddTaskState extends State<AddTask> {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
       initialTime: _time,
-      
     );
     if (newTime != null) {
       setState(() {
@@ -34,7 +34,6 @@ class _AddTaskState extends State<AddTask> {
     final TimeOfDay? newTime2 = await showTimePicker(
       context: context,
       initialTime: _time2,
-      
     );
     if (newTime2 != null) {
       setState(() {
@@ -42,6 +41,7 @@ class _AddTaskState extends State<AddTask> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> newDesk = {};
@@ -57,7 +57,6 @@ class _AddTaskState extends State<AddTask> {
       }
     }
 
-
     return Scaffold(
         body: SafeArea(
       child: Expanded(
@@ -71,7 +70,8 @@ class _AddTaskState extends State<AddTask> {
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color.fromARGB(255, 7, 15, 255).withOpacity(0.5),
+                    color:
+                        const Color.fromARGB(255, 7, 15, 255).withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 12,
                     offset: const Offset(3, 3),
@@ -82,30 +82,33 @@ class _AddTaskState extends State<AddTask> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    '$data',
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 27, 27, 27),
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  // Text(
+                  //   '$data',
+                  //   style: const TextStyle(
+                  //     color: Color.fromARGB(255, 27, 27, 27),
+                  //     fontSize: 26,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  TextField(),
                   const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [ElevatedButton(
-                            onPressed: () {
-                              _selectTime();
-                              newDesk['time'] = _time.toString();
-                            },
-                            child: const Text('Время'),
-                          ),ElevatedButton(
-                            onPressed: () {
-                              _selectTime2();
-                              newDesk['time'] = _time2.toString();
-                            },
-                            child: const Text('Время'),
-                          ),
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          _selectTime();
+                          newDesk['time'] = _time.toString();
+                        },
+                        child: const Text('Время'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          _selectTime2();
+                          newDesk['time'] = _time2.toString();
+                        },
+                        child: const Text('Время'),
+                      ),
                       Text(
                         '${_time.format(context)}',
                         style: const TextStyle(
@@ -161,11 +164,21 @@ class _AddTaskState extends State<AddTask> {
                             enableSearch: false,
                             enableFilter: false,
                             label: const Text("Раздел"),
+                            onSelected: (value) => newDesk['chapster'] = value,
                           ),
                         ],
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          newDesk['chapster'];
+                          for(var r in widget.tasksList) {
+                            if (r.title == newDesk['chapster']) {
+                              r.desc!.add(newDesk);
+                            }
+                          }
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => HomePage(widget.tasksList)));
+                        },
                         child: const Text('Готовонах'),
                       ),
                     ],
