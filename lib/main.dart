@@ -18,8 +18,9 @@ class MainApp extends StatelessWidget {
     // ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'FlickerФуикер',
+      title: 'Flicker',
       home: HomePage(),
     );
+    // аввгпргщаврпг
   }
 }
