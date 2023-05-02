@@ -21,6 +21,7 @@ class Task {
       this.done,
       this.desc,
       this.isLast = false});
+      
   static List<Task> generateTasks() {
     return [
       Task(

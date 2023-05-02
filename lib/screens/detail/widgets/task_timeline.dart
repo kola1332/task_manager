@@ -18,7 +18,12 @@ class TaskTimeline extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(detail['time']),
+                Text(
+                  detail['time'],
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 detail['title'].isNotEmpty //!= ['']
                     ? _buildCart(
                         detail['bgColor'],

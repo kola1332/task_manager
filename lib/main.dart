@@ -12,10 +12,10 @@ class MainApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-      systemNavigationBarColor: Colors.white,
-      systemNavigationBarDividerColor: Colors.white,
-    ));
+    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+    //   systemNavigationBarColor: Colors.white,
+    //   systemNavigationBarDividerColor: Colors.white,
+    // ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flicker',

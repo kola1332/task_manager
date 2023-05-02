@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/home/widgets/go_premium.dart';
 import 'package:task_manager/screens/home/widgets/tasks.dart';
 
+import '../task/add_task.dart';
+
 class HomePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+  final tasksList = Task.generateTasks();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: _buildAppBar(),
@@ -28,7 +33,10 @@ class HomePage extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         backgroundColor: Colors.black,
         elevation: 0,
-        onPressed: () {},
+        onPressed: () {
+           Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => AddTask(tasksList)));
+        },
         child: const Icon(
           Icons.add,
           size: 35,
