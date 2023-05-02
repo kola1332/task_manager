@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/task.dart';
+import '../detail/widgets/date_picker.dart';
 import '../home/home.dart';
 
 class AddTask extends StatefulWidget {
@@ -57,14 +58,14 @@ class _AddTaskState extends State<AddTask> {
       }
     }
 
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.black,
         body: SafeArea(
       child: Expanded(
         child: ListView(
           children: [
             Container(
               margin: const EdgeInsets.all(8),
-              height: 140,
+              height: 160,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 85, 111, 239),
                 borderRadius: BorderRadius.circular(20),
@@ -79,7 +80,7 @@ class _AddTaskState extends State<AddTask> {
                 ],
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
@@ -87,7 +88,6 @@ class _AddTaskState extends State<AddTask> {
                     child: TextField(style: TextStyle(color: Color.fromARGB(255, 27, 27, 27),
                           fontSize: 26,
                           fontWeight: FontWeight.bold,),
-
                       controller: widget.controller,
                       decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -102,23 +102,22 @@ class _AddTaskState extends State<AddTask> {
                     ),
                   ),
                   Row(
-                    children: [
-                      const SizedBox(width: 20),
-                      // Text(
-                      //   '$data',
-                      //   style: const TextStyle(
-                      //     color: Color.fromARGB(255, 27, 27, 27),
-                      //     fontSize: 26,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(width: 10),
+                    children: [const SizedBox(width: 20),
+                    Column(
+                      children: const [ Text('Mon',style: TextStyle(
+                                color: Colors.white60,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),),
+                        Text('24',style: TextStyle(
+                                color: Colors.white60,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),),
+                      ],
+                    ),
+                      const SizedBox(width: 30),
                       TextButton(
                         onPressed: () {
                           _selectTime();
@@ -160,54 +159,43 @@ class _AddTaskState extends State<AddTask> {
                 ],
               ),
             ),
-            Center(
-              child: Container(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // TextField(
-                      //   controller: widget.controller,
-                      //   decoration: const InputDecoration(
-                      //     labelText: 'name',
-                      //   ),
-                      //   onSubmitted: (String name) {
-                      //     setState(() {
-                      //       data = name;
-                      //       newDesk['title'] = name;
-                      //     });
-                      //   },
-                      // ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          DropdownMenu<Chapsters>(
-                            width: 150,
-                            dropdownMenuEntries: tasks,
-                            enableSearch: false,
-                            enableFilter: false,
-                            label: const Text("Раздел"),
-                            onSelected: (value) => newDesk['chapster'] = value,
-                          ),
-                        ],
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          newDesk['chapster'];
-                          for (var r in widget.tasksList) {
-                            if (r.title == newDesk['chapster']) {
-                              r.desc!.add(newDesk);
-                            }
+            Container(height: 600,decoration: BoxDecoration(color: Colors.white,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40)),
+              ),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [ DatePicker(),
+                   
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        DropdownMenu<Chapsters>(
+                          width: 150,
+                          dropdownMenuEntries: tasks,
+                          enableSearch: false,
+                          enableFilter: false,
+                          label: const Text("Раздел"),
+                          onSelected: (value) => newDesk['chapster'] = value,
+                        ),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        newDesk['chapster'];
+                        for (var r in widget.tasksList) {
+                          if (r.title == newDesk['chapster']) {
+                            r.desc!.add(newDesk);
                           }
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  HomePage(widget.tasksList)));
-                        },
-                        child: const Text('Готовонах'),
-                      ),
-                    ],
-                  )),
-            ),
+                        }
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                HomePage(widget.tasksList)));
+                      },
+                      child: const Text('Готовонах'),
+                    ),
+                  ],
+                )),
           ],
         ),
       ),
