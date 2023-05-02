@@ -84,10 +84,14 @@ class _AddTaskState extends State<AddTask> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
-                    child: TextField(
+                    child: TextField(style: TextStyle(color: Color.fromARGB(255, 27, 27, 27),
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,),
+
                       controller: widget.controller,
                       decoration: const InputDecoration(
-                          // labelText: 'name',
+                          border: InputBorder.none,
+                          hintText: "Имя вашей задачи"
                           ),
                       onSubmitted: (String name) {
                         setState(() {
@@ -162,18 +166,18 @@ class _AddTaskState extends State<AddTask> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextField(
-                        controller: widget.controller,
-                        decoration: const InputDecoration(
-                          labelText: 'name',
-                        ),
-                        onSubmitted: (String name) {
-                          setState(() {
-                            data = name;
-                            newDesk['title'] = name;
-                          });
-                        },
-                      ),
+                      // TextField(
+                      //   controller: widget.controller,
+                      //   decoration: const InputDecoration(
+                      //     labelText: 'name',
+                      //   ),
+                      //   onSubmitted: (String name) {
+                      //     setState(() {
+                      //       data = name;
+                      //       newDesk['title'] = name;
+                      //     });
+                      //   },
+                      // ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
