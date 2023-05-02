@@ -107,7 +107,7 @@ class _AddTaskState extends State<AddTask> {
                             child: const Text('Время'),
                           ),
                       Text(
-                        '$_time',
+                        '${_time.format(context)}',
                         style: const TextStyle(
                           color: Colors.white60,
                           fontSize: 19,
@@ -115,7 +115,7 @@ class _AddTaskState extends State<AddTask> {
                         ),
                       ),
                       Text(
-                        '$_time2',
+                        '${_time2.format(context)}',
                         style: const TextStyle(
                           color: Colors.white60,
                           fontSize: 19,
