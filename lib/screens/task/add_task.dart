@@ -14,14 +14,13 @@ class AddTask extends StatefulWidget {
 class _AddTaskState extends State<AddTask> {
   TimeOfDay _time = const TimeOfDay(hour: 0, minute: 0);
   TimeOfDay _time2 = const TimeOfDay(hour: 0, minute: 0);
-  String data = 'data';
+  String data = 'Имя вашей задачи';
   List<String> sections = ['Personal', 'Work', 'Health'];
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
       initialTime: _time,
-      
     );
     if (newTime != null) {
       setState(() {
@@ -34,7 +33,6 @@ class _AddTaskState extends State<AddTask> {
     final TimeOfDay? newTime2 = await showTimePicker(
       context: context,
       initialTime: _time2,
-      
     );
     if (newTime2 != null) {
       setState(() {
@@ -42,6 +40,7 @@ class _AddTaskState extends State<AddTask> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> newDesk = {};
@@ -57,7 +56,6 @@ class _AddTaskState extends State<AddTask> {
       }
     }
 
-
     return Scaffold(
         body: SafeArea(
       child: Expanded(
@@ -71,7 +69,8 @@ class _AddTaskState extends State<AddTask> {
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color.fromARGB(255, 7, 15, 255).withOpacity(0.5),
+                    color:
+                        const Color.fromARGB(255, 7, 15, 255).withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 12,
                     offset: const Offset(3, 3),
@@ -80,46 +79,55 @@ class _AddTaskState extends State<AddTask> {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '$data',
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 27, 27, 27),
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [ElevatedButton(
-                            onPressed: () {
-                              _selectTime();
-                              newDesk['time'] = _time.toString();
-                            },
-                            child: const Text('Время'),
-                          ),ElevatedButton(
-                            onPressed: () {
-                              _selectTime2();
-                              newDesk['time'] = _time2.toString();
-                            },
-                            child: const Text('Время'),
-                          ),
+                    children: [SizedBox(width: 20),
                       Text(
-                        '${_time.format(context)}',
+                        '$data',
                         style: const TextStyle(
-                          color: Colors.white60,
-                          fontSize: 19,
+                          color: Color.fromARGB(255, 27, 27, 27),
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        '${_time2.format(context)}',
-                        style: const TextStyle(
-                          color: Colors.white60,
-                          fontSize: 19,
-                          fontWeight: FontWeight.bold,
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [SizedBox(width: 10),
+                      TextButton(
+                        onPressed: () {
+                          _selectTime();
+                          newDesk['time'] = _time.toString();
+                        },
+                        child: Text(
+                          '${_time.format(context)}',
+                          style: TextStyle(
+                            color: Colors.white60,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+Text('-', style: TextStyle(
+                            color: Colors.white60,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),),
+                      TextButton(
+                        onPressed: () {
+                          _selectTime2();
+                          newDesk['time'] = _time2.toString();
+                        },
+                        child: Text(
+                          '${_time2.format(context)}',
+                          style: TextStyle(
+                            color: Colors.white60,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
@@ -136,7 +144,7 @@ class _AddTaskState extends State<AddTask> {
                       TextField(
                         controller: widget.controller,
                         decoration: const InputDecoration(
-                          labelText: 'Task name',
+                          labelText: 'name',
                         ),
                         onSubmitted: (String name) {
                           setState(() {
@@ -148,13 +156,6 @@ class _AddTaskState extends State<AddTask> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              _selectTime();
-                              newDesk['time'] = _time.toString();
-                            },
-                            child: const Text('Время'),
-                          ),
                           DropdownMenu<Chapsters>(
                             width: 150,
                             dropdownMenuEntries: tasks,
