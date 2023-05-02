@@ -42,7 +42,6 @@ class _AddTaskState extends State<AddTask> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> newDesk = {};
@@ -72,7 +71,6 @@ class _AddTaskState extends State<AddTask> {
                 boxShadow: [
                   BoxShadow(
                     color:
-                       
                         const Color.fromARGB(255, 7, 15, 255).withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 12,
@@ -85,20 +83,23 @@ class _AddTaskState extends State<AddTask> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 15,right: 15),
-                    child: TextField( controller: widget.controller,
-                          decoration: const InputDecoration(
-                            // labelText: 'name',
+                    padding: const EdgeInsets.only(left: 15, right: 15),
+                    child: TextField(
+                      controller: widget.controller,
+                      decoration: const InputDecoration(
+                          // labelText: 'name',
                           ),
-                          onSubmitted: (String name) {
-                            setState(() {
-                              data = name;
-                              newDesk['title'] = name;
-                            });
-                          },),
+                      onSubmitted: (String name) {
+                        setState(() {
+                          data = name;
+                          newDesk['title'] = name;
+                        });
+                      },
+                    ),
                   ),
                   Row(
-                    children: [SizedBox(width: 20),
+                    children: [
+                      const SizedBox(width: 20),
                       // Text(
                       //   '$data',
                       //   style: const TextStyle(
@@ -107,40 +108,43 @@ class _AddTaskState extends State<AddTask> {
                       //     fontWeight: FontWeight.bold,
                       //   ),
                       // ),
-                      
                     ],
                   ),
                   const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [SizedBox(width: 10),
+                    children: [
+                      const SizedBox(width: 10),
                       TextButton(
                         onPressed: () {
                           _selectTime();
                           newDesk['time'] = _time.toString();
                         },
                         child: Text(
-                          '${_time.format(context)}',
-                          style: TextStyle(
+                          _time.format(context),
+                          style: const TextStyle(
                             color: Colors.white60,
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-Text('-', style: TextStyle(
-                            color: Colors.white60,
-                            fontSize: 19,
-                            fontWeight: FontWeight.bold,
-                          ),),
+                      const Text(
+                        '-',
+                        style: TextStyle(
+                          color: Colors.white60,
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       TextButton(
                         onPressed: () {
                           _selectTime2();
                           newDesk['time'] = _time2.toString();
                         },
                         child: Text(
-                          '${_time2.format(context)}',
-                          style: TextStyle(
+                          _time2.format(context),
+                          style: const TextStyle(
                             color: Colors.white60,
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
@@ -186,13 +190,14 @@ Text('-', style: TextStyle(
                       ElevatedButton(
                         onPressed: () {
                           newDesk['chapster'];
-                          for(var r in widget.tasksList) {
+                          for (var r in widget.tasksList) {
                             if (r.title == newDesk['chapster']) {
                               r.desc!.add(newDesk);
                             }
                           }
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HomePage(widget.tasksList)));
+                              builder: (context) =>
+                                  HomePage(widget.tasksList)));
                         },
                         child: const Text('Готовонах'),
                       ),
