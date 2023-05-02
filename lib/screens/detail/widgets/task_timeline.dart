@@ -20,7 +20,7 @@ class TaskTimeline extends StatelessWidget {
               children: [
                 Text(
                   detail['time'],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -47,19 +47,19 @@ class TaskTimeline extends StatelessWidget {
             bottomLeft: Radius.circular(10),
             bottomRight: Radius.circular(10),
           )),
-      padding: EdgeInsets.all(15),
-      margin: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(15),
+      margin: const EdgeInsets.all(5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             slot,
-            style: TextStyle(color: Colors.grey),
+            style: const TextStyle(color: Colors.grey),
           ),
         ],
       ),
