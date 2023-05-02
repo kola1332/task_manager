@@ -13,6 +13,7 @@ class AddTask extends StatefulWidget {
 
 class _AddTaskState extends State<AddTask> {
   TimeOfDay _time = const TimeOfDay(hour: 0, minute: 0);
+  TimeOfDay _time2 = const TimeOfDay(hour: 0, minute: 0);
   String data = 'data';
   List<String> sections = ['Personal', 'Work', 'Health'];
 
@@ -20,6 +21,7 @@ class _AddTaskState extends State<AddTask> {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
       initialTime: _time,
+      
     );
     if (newTime != null) {
       setState(() {
@@ -28,6 +30,18 @@ class _AddTaskState extends State<AddTask> {
     }
   }
 
+  void _selectTime2() async {
+    final TimeOfDay? newTime2 = await showTimePicker(
+      context: context,
+      initialTime: _time2,
+      
+    );
+    if (newTime2 != null) {
+      setState(() {
+        _time2 = newTime2;
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> newDesk = {};
@@ -79,7 +93,19 @@ class _AddTaskState extends State<AddTask> {
                   const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
+                    children: [ElevatedButton(
+                            onPressed: () {
+                              _selectTime();
+                              newDesk['time'] = _time.toString();
+                            },
+                            child: const Text('Время'),
+                          ),ElevatedButton(
+                            onPressed: () {
+                              _selectTime2();
+                              newDesk['time'] = _time2.toString();
+                            },
+                            child: const Text('Время'),
+                          ),
                       Text(
                         '$_time',
                         style: const TextStyle(
@@ -89,7 +115,7 @@ class _AddTaskState extends State<AddTask> {
                         ),
                       ),
                       Text(
-                        '$_time',
+                        '$_time2',
                         style: const TextStyle(
                           color: Colors.white60,
                           fontSize: 19,
