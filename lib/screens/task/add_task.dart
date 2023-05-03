@@ -69,7 +69,8 @@ class _AddTaskState extends State<AddTask> {
 
   @override
   Widget build(BuildContext context) {
-    Item item = Item('','',Colors.red,'');
+    List<dynamic> list = [];
+    Item item = Item('', '', Colors.red, '');
     Map<String, dynamic> newDesk = {};
     // final Task newTask = Task();
     final List<DropdownMenuEntry<Chapsters>> tasks =
@@ -124,6 +125,9 @@ class _AddTaskState extends State<AddTask> {
                           setState(() {
                             data = name;
                             newDesk['title'] = name;
+                            item.title = name;
+                            list.add(name);
+                            print('title = ${item.title}');
                           });
                         },
                       ),
@@ -157,6 +161,9 @@ class _AddTaskState extends State<AddTask> {
                           onPressed: () {
                             _selectTime();
                             newDesk['time'] = _time.toString();
+                            item.time = _time.format(context);
+                            list.add(_time.format(context));
+                            print('time = ${item.time}');
                           },
                           child: Text(
                             _time.format(context),
@@ -271,6 +278,10 @@ class _AddTaskState extends State<AddTask> {
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          print(list[0]);
+                          print(list[1]);
+                          print('title = ${item.time}');
+                          print('time = ${item.title}');
                           newDesk['chapster'];
                           for (var r in widget.tasksList) {
                             if (r.title == newDesk['chapster']) {
