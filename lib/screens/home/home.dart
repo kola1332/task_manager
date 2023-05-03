@@ -11,11 +11,11 @@ import '../task/widgets/testcart.dart';
 
 class HomePage extends StatelessWidget {
   var tasksList;
-  // HomePage([this.tasksList]);
+  HomePage([this.tasksList]);
 
   @override
   Widget build(BuildContext context) {
-    // tasksList ??= Task.generateTasks();
+    tasksList ??= Task.generateTasks();
     // return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
     //   var tasksList;
     //   if (state is TaskStateLoading) {

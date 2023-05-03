@@ -192,11 +192,11 @@ class _AddChapsterState extends State<AddChapster> {
                               topLeft: Radius.circular(40),
                               topRight: Radius.circular(40)),
                         ),
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(10),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Row(
+                            Row(mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   'Icon:',
