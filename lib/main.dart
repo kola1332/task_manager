@@ -30,7 +30,7 @@ class MainApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flicker',
+      title: 'Flickerфигифер',
       home: HomePage(),
     );
   }
