@@ -1,55 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/home/widgets/go_premium.dart';
 import 'package:task_manager/screens/home/widgets/tasks.dart';
 
+import '../../bloc/task_cubit.dart';
+import '../../bloc/task_state.dart';
 import '../task/add_task.dart';
 import '../task/widgets/testcart.dart';
 
 class HomePage extends StatelessWidget {
-  var tasksList;
-  HomePage([this.tasksList]);
+  // var tasksList;
+  // HomePage([this.tasksList]);
 
   @override
   Widget build(BuildContext context) {
-    tasksList ??= Task.generateTasks();
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: _buildAppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GoPremium(),
-          Container(
-            padding: const EdgeInsets.all(15),
-            child: const Text(
-              'Tasks',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+    // tasksList ??= Task.generateTasks();
+    return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
+      var tasksList;
+      if (state is TaskStateLoading) {
+        return Center(child: CircularProgressIndicator());
+      } else if (state is TaskStateLoaded) {
+        tasksList = state.tasks;
+      }
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: _buildAppBar(),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GoPremium(),
+            Container(
+              padding: const EdgeInsets.all(15),
+              child: const Text(
+                'Tasks',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          Expanded(child: Tasks()),
-        ],
-      ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Colors.black,
-        elevation: 0,
-        onPressed: () {
-           Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => 
-            // Cart
-            AddTask
-            (tasksList)
-            ));
-        },
-        child: const Icon(
-          Icons.add,
-          size: 35,
+            Expanded(child: Tasks()),
+          ],
         ),
-      ),
-    );
+        bottomNavigationBar: _buildBottomNavigationBar(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          backgroundColor: Colors.black,
+          elevation: 0,
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => AddTask(tasksList)));
+          },
+          child: const Icon(
+            Icons.add,
+            size: 35,
+          ),
+        ),
+      );
+    });
   }
 
   Widget _buildBottomNavigationBar() {
