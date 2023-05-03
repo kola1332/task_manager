@@ -25,19 +25,19 @@ class _AddTaskState extends State<AddTask> {
     });
   }
 
-  void voidcolorPink() {
+  void voidColorPink() {
     setState(() {
       colorTab = Colors.pinkAccent;
     });
   }
 
-  void voidcolorBlue() {
+  void voidColorBlue() {
     setState(() {
       colorTab = Colors.blue;
     });
   }
 
-  void voidcolorAmber() {
+  void voidColorAmber() {
     setState(() {
       colorTab = Colors.cyan;
     });
@@ -215,7 +215,7 @@ class _AddTaskState extends State<AddTask> {
                             style: TextStyle(fontSize: 22),
                           ),
                           TextButton(
-                            onPressed: voidcolorAmber,
+                            onPressed: voidColorAmber,
                             child: Container(
                               height: 25,
                               width: 25,
@@ -225,7 +225,7 @@ class _AddTaskState extends State<AddTask> {
                             ),
                           ),
                           TextButton(
-                            onPressed: voidcolorBlue,
+                            onPressed: voidColorBlue,
                             child: Container(
                               height: 25,
                               width: 25,
@@ -235,7 +235,7 @@ class _AddTaskState extends State<AddTask> {
                             ),
                           ),
                           TextButton(
-                            onPressed: voidcolorPink,
+                            onPressed: voidColorPink,
                             child: Container(
                               height: 25,
                               width: 25,
