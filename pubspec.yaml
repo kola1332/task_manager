@@ -10,6 +10,8 @@ dependencies:
   dotted_border: ^2.0.0+3
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.2
+  get_it: ^7.3.0
   timeline_tile: ^2.0.0
 
 dev_dependencies:

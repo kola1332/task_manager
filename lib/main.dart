@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/screens/home/home.dart';
+import 'bloc/task_cubit.dart';
+import 'locator_service.dart' as di;
+import 'locator_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
   runApp(MainApp());
 }
 
@@ -12,10 +18,16 @@ class MainApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
-    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-    //   systemNavigationBarColor: Colors.white,
-    //   systemNavigationBarDividerColor: Colors.white,
-    // ));
+
+    // return BlocProvider<TaskCubit>(
+    //   create: (context) => sl<TaskCubit>()..getTasks(),
+    //   child: MaterialApp(
+    //     debugShowCheckedModeBanner: false,
+    //     title: 'Flicker',
+    //     home: HomePage(),
+    //   ),
+    // );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flickerфигифер',
