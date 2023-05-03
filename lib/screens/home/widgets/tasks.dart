@@ -2,6 +2,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/detail.dart';
+import 'package:task_manager/screens/home/home.dart';
+
+import '../../task/add__chapster.dart';
 
 class Tasks extends StatelessWidget {
   final tasksList = Task.generateTasks();
@@ -18,23 +21,34 @@ class Tasks extends StatelessWidget {
             mainAxisSpacing: 10,
           ),
           itemBuilder: (context, index) => tasksList[index].isLast
-              ? _buildAddTask()
+              ? _buildAddTask(context)
               : _buildTask(context, tasksList[index])),
     );
   }
 
-  Widget _buildAddTask() {
+  Widget _buildAddTask(context) {
     return DottedBorder(
       borderType: BorderType.RRect,
       radius: const Radius.circular(20),
       dashPattern: const [10, 10],
       color: Colors.grey,
       strokeWidth: 2,
-      child: const Center(
-          child: Text(
-        '+ Add',
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-      )),
+      child:  Center(
+        child: TextButton(
+          onPressed: (){
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => 
+            // Cart
+            // AddTask
+            AddChapster
+            (tasksList)
+            ));
+        },
+      
+        
+        
+        child: Text('+ Add',style: TextStyle(color: Colors.black,fontSize: 20),),),
+      ),
     );
   }
 
@@ -42,7 +56,7 @@ class Tasks extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Detailpage(task)));
+            .push(MaterialPageRoute(builder: (context) => Detailpage(task,tasksList)));
       },
       child: Container(
         padding: const EdgeInsets.all(15),
