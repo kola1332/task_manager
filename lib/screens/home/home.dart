@@ -3,6 +3,7 @@ import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/home/widgets/go_premium.dart';
 import 'package:task_manager/screens/home/widgets/tasks.dart';
 
+import '../task/add__chapster.dart';
 import '../task/add_task.dart';
 import '../task/widgets/testcart.dart';
 
@@ -41,6 +42,7 @@ class HomePage extends StatelessWidget {
             .push(MaterialPageRoute(builder: (context) => 
             // Cart
             AddTask
+            // AddChapster
             (tasksList)
             ));
         },

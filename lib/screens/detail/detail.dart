@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/widgets/task_title.dart';
 
+import '../task/add_task.dart';
 import 'widgets/date_picker.dart';
 import 'widgets/task_timeline.dart';
 
 class Detailpage extends StatelessWidget {
   final Task task;
-  const Detailpage(this.task);
+  var tasksList;
+   Detailpage(this.task,this.tasksList);
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +66,18 @@ class Detailpage extends StatelessWidget {
         onPressed: () => Navigator.of(context).pop(),
         iconSize: 20,
       ),
-      actions: const [
-        Icon(
-          Icons.more_vert,
-          size: 40,
-        ),
+      actions:  [IconButton(onPressed: (){
+           Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => 
+            // Cart
+            AddTask
+            // AddChapster
+            (tasksList)
+            ));
+        },
+         icon: const Icon(Icons.add),
+         iconSize: 30,),
+        
       ],
       flexibleSpace: FlexibleSpaceBar(
         title: Column(
