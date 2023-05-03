@@ -4,6 +4,7 @@ import 'package:task_manager/screens/home/widgets/go_premium.dart';
 import 'package:task_manager/screens/home/widgets/tasks.dart';
 
 import '../task/add_task.dart';
+import '../task/widgets/testcart.dart';
 
 class HomePage extends StatelessWidget {
   var tasksList;
@@ -37,7 +38,11 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         onPressed: () {
            Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => AddTask(tasksList)));
+            .push(MaterialPageRoute(builder: (context) => 
+            // Cart
+            AddTask
+            (tasksList)
+            ));
         },
         child: const Icon(
           Icons.add,
