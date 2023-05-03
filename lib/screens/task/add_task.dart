@@ -44,6 +44,7 @@ class _AddTaskState extends State<AddTask> {
 
   @override
   Widget build(BuildContext context) {
+    Item item = Item('','',Colors.red,'');
     Map<String, dynamic> newDesk = {};
     // final Task newTask = Task();
     final List<DropdownMenuEntry<Chapsters>> tasks =
@@ -93,6 +94,7 @@ class _AddTaskState extends State<AddTask> {
                         setState(() {
                           data = name;
                           newDesk['title'] = name;
+                          item.title = name;
                         });
                       },
                     ),
@@ -118,7 +120,10 @@ class _AddTaskState extends State<AddTask> {
                       TextButton(
                         onPressed: () {
                           _selectTime();
-                          newDesk['time'] = _time.toString();
+                          newDesk['time'] = _time.format(context);
+                          item.time = _time.format(context);
+                          newDesk['1'] = 0;
+                          print(newDesk['time']);
                         },
                         child: Text(
                           _time.format(context),
@@ -140,7 +145,7 @@ class _AddTaskState extends State<AddTask> {
                       TextButton(
                         onPressed: () {
                           _selectTime2();
-                          newDesk['time'] = _time2.toString();
+                          newDesk['time2'] = _time2.toString();
                         },
                         child: Text(
                           _time2.format(context),
@@ -189,9 +194,16 @@ class _AddTaskState extends State<AddTask> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          newDesk['chapster'];
+                          print('1 ${item.title}');
+                          print('2 ${item.time}');
+                          print('3 ${item.slot}');
+                          print(newDesk['time']);
+                          newDesk['bgColor'] = Colors.red;
+                          newDesk['slot'] =
+                              '${newDesk['time']} - ${newDesk['time']}';
                           for (var r in widget.tasksList) {
                             if (r.title == newDesk['chapster']) {
+                              r.desc ??= [];
                               r.desc!.add(newDesk);
                             }
                           }
@@ -199,7 +211,7 @@ class _AddTaskState extends State<AddTask> {
                               builder: (context) =>
                                   HomePage(widget.tasksList)));
                         },
-                        child: const Text('Готовонах'),
+                        child: const Text('Готово'),
                       ),
                     ],
                   )),
@@ -214,4 +226,17 @@ class _AddTaskState extends State<AddTask> {
 class Chapsters {
   final String label;
   Chapsters(this.label);
+}
+
+class Item {
+  String title;
+  String time;
+  Color bgColor;
+  String slot;
+  Item(
+    this.title,
+    this.time,
+    this.bgColor,
+    this.slot,
+  );
 }
