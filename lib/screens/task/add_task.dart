@@ -311,16 +311,3 @@ class Item {
     this.slot,
   );
 }
-
-class Item {
-  String title;
-  String time;
-  Color bgColor;
-  String slot;
-  Item(
-    this.title,
-    this.time,
-    this.bgColor,
-    this.slot,
-  );
-}
