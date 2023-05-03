@@ -10,19 +10,19 @@ import '../task/add_task.dart';
 import '../task/widgets/testcart.dart';
 
 class HomePage extends StatelessWidget {
-  // var tasksList;
+  var tasksList;
   // HomePage([this.tasksList]);
 
   @override
   Widget build(BuildContext context) {
     // tasksList ??= Task.generateTasks();
-    return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
-      var tasksList;
-      if (state is TaskStateLoading) {
-        return Center(child: CircularProgressIndicator());
-      } else if (state is TaskStateLoaded) {
-        tasksList = state.tasks;
-      }
+    // return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
+    //   var tasksList;
+    //   if (state is TaskStateLoading) {
+    //     return Center(child: CircularProgressIndicator());
+    //   } else if (state is TaskStateLoaded) {
+    //     tasksList = state.tasks;
+    //   }
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: _buildAppBar(),
@@ -57,7 +57,6 @@ class HomePage extends StatelessWidget {
           ),
         ),
       );
-    });
   }
 
   Widget _buildBottomNavigationBar() {
