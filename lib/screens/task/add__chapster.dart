@@ -307,7 +307,7 @@ class _AddChapsterState extends State<AddChapster> {
                                 }
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
-                                        HomePage(widget.tasksList)));
+                                        HomePage()));
                               },
                               child: const Text('Cоздать'),
                             ),

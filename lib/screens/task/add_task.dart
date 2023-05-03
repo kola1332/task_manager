@@ -302,7 +302,7 @@ class _AddTaskState extends State<AddTask> {
                             }
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
-                                    HomePage(widget.tasksList)));
+                                    HomePage()));
                           },
                           child: const Text('Готовонах'),
                         ),
