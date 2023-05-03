@@ -293,7 +293,7 @@ class _AddTaskState extends State<AddTask> {
                               builder: (context) =>
                                   HomePage(widget.tasksList)));
                         },
-                        child: const Text('Готовонах'),
+                        child: const Text('Готово'),
                       ),
                     ],
                   )),
