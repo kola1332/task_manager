@@ -12,7 +12,7 @@ class TaskCubit extends Cubit<TaskState> {
 
   void getTasks() {
     if (state is TaskStateLoading) return;
-    final currentState = state;
+    // final currentState = state;
 
     emit(TaskStateLoaded(tasks));
   }

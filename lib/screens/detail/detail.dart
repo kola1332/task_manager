@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/widgets/task_title.dart';

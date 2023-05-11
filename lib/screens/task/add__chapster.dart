@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: must_be_immutable
 
+import 'package:flutter/material.dart';
 import '../../models/task.dart';
-import '../detail/widgets/date_picker.dart';
 import '../home/home.dart';
 
 class AddChapster extends StatefulWidget {
@@ -14,8 +14,6 @@ class AddChapster extends StatefulWidget {
 }
 
 class _AddChapsterState extends State<AddChapster> {
-  TimeOfDay _time = const TimeOfDay(hour: 0, minute: 0);
-  TimeOfDay _time2 = const TimeOfDay(hour: 0, minute: 0);
   String data = 'Имя вашей задачи';
   List<String> sections = ['Personal', 'Work', 'Health'];
   Color colorTab = Color.fromARGB(255, 182, 255, 185);

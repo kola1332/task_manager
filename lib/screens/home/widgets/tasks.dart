@@ -5,7 +5,6 @@ import 'package:task_manager/bloc/task_cubit.dart';
 import 'package:task_manager/bloc/task_state.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/detail.dart';
-import 'package:task_manager/screens/home/home.dart';
 
 import '../../task/add__chapster.dart';
 

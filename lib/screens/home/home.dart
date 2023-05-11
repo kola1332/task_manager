@@ -1,17 +1,12 @@
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/home/widgets/go_premium.dart';
 import 'package:task_manager/screens/home/widgets/tasks.dart';
-
-import '../../bloc/task_cubit.dart';
-import '../../bloc/task_state.dart';
 import '../task/add_task.dart';
-import '../task/widgets/testcart.dart';
 
 class HomePage extends StatelessWidget {
   var tasksList;
-  // HomePage([this.tasksList]);
 
   @override
   Widget build(BuildContext context) {

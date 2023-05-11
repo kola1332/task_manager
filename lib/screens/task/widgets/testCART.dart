@@ -1,9 +1,8 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import '/screens/home/home.dart';
 import '/models/task.dart';
-import '/screens/detail/widgets/date_picker.dart';
 import '/screens/task/add_task.dart';
-import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
   TextEditingController controller = TextEditingController();
@@ -18,8 +17,6 @@ class _CartState extends State<Cart> {
   
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> newDesk = {};
-    final Task newTask = Task();
     final List<DropdownMenuEntry<Chapsters>> tasks =
         <DropdownMenuEntry<Chapsters>>[];
     for (final Task color in widget.tasksList) {
