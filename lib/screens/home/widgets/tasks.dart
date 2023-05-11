@@ -1,5 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_manager/bloc/task_cubit.dart';
+import 'package:task_manager/bloc/task_state.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/detail.dart';
 import 'package:task_manager/screens/home/home.dart';
@@ -7,23 +10,28 @@ import 'package:task_manager/screens/home/home.dart';
 import '../../task/add__chapster.dart';
 
 class Tasks extends StatelessWidget {
-  final tasksList = Task.generateTasks();
+  late final tasksList;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: GridView.builder(
-          itemCount: tasksList.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-          ),
-          itemBuilder: (context, index) => tasksList[index].isLast
-              ? _buildAddTask(context)
-              : _buildTask(context, tasksList[index])),
-    );
+    return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
+      if (state is TaskStateLoaded) {
+        tasksList = state.tasks;
+      }
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: GridView.builder(
+            itemCount: tasksList.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+            itemBuilder: (context, index) => tasksList[index].isLast
+                ? _buildAddTask(context)
+                : _buildTask(context, tasksList[index])),
+      );
+    });
   }
 
   Widget _buildAddTask(context) {
@@ -33,21 +41,20 @@ class Tasks extends StatelessWidget {
       dashPattern: const [10, 10],
       color: Colors.grey,
       strokeWidth: 2,
-      child:  Center(
+      child: Center(
         child: TextButton(
-          onPressed: (){
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => 
-            // Cart
-            // AddTask
-            AddChapster
-            (tasksList)
-            ));
-        },
-      
-        
-        
-        child: Text('+ Add',style: TextStyle(color: Colors.black,fontSize: 20),),),
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    // Cart
+                    // AddTask
+                    AddChapster(tasksList)));
+          },
+          child: Text(
+            '+ Add',
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
+        ),
       ),
     );
   }
@@ -55,8 +62,8 @@ class Tasks extends StatelessWidget {
   Widget _buildTask(BuildContext context, Task task) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Detailpage(task,tasksList)));
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => Detailpage(task, tasksList)));
       },
       child: Container(
         padding: const EdgeInsets.all(15),
