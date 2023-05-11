@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,95 +11,84 @@ import '../home/home.dart';
 
 class AddTask extends StatefulWidget {
   TextEditingController controller = TextEditingController();
-  List<Task> tasksList;
-  AddTask(this.tasksList);
 
   @override
   State<AddTask> createState() => _AddTaskState();
 }
 
 class _AddTaskState extends State<AddTask> {
-  TimeOfDay _time = const TimeOfDay(hour: 0, minute: 0);
-  TimeOfDay _time2 = const TimeOfDay(hour: 0, minute: 0);
+  late TimeOfDay time1;
+  late TimeOfDay time2;
+  late Desk newDesk;
   String data = 'Имя вашей задачи';
-  List<String> sections = ['Personal', 'Work', 'Health'];
   Color colorTab = Colors.green;
-  void voidcolorGreen() {
-    setState(() {
-      colorTab = Colors.green;
-    });
-  }
-
-  void voidColorPink() {
-    setState(() {
-      colorTab = Colors.pinkAccent;
-    });
-  }
-
-  void voidColorBlue() {
-    setState(() {
-      colorTab = Colors.blue;
-    });
-  }
-
-  void voidColorAmber() {
-    setState(() {
-      colorTab = Colors.cyan;
-    });
-  }
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
       context: context,
-      initialTime: _time,
+      initialTime: time1,
     );
     if (newTime != null) {
       setState(() {
-        _time = newTime;
+        time1 = newTime;
+        newDesk.time = newTime.format(context);
       });
     }
   }
 
   void _selectTime2() async {
-    final TimeOfDay? newTime2 = await showTimePicker(
+    final TimeOfDay? newTime = await showTimePicker(
       context: context,
-      initialTime: _time2,
+      initialTime: time2,
     );
-    if (newTime2 != null) {
+    if (newTime != null) {
       setState(() {
-        _time2 = newTime2;
+        time2 = newTime;
       });
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    List<dynamic> list = [];
-    Item item = Item('', '', Colors.red, '');
-    Map<String, dynamic> newDesk = {};
-    // final Task newTask = Task();
-    final List<DropdownMenuEntry<Chapsters>> tasks =
-        <DropdownMenuEntry<Chapsters>>[];
-    for (final Task color in widget.tasksList) {
-      if (color.title != null) {
-        tasks.add(DropdownMenuEntry<Chapsters>(
-          value: Chapsters(color.title!),
-          label: color.title!,
-        ));
-      }
-    }
+  void initState() {
+    // ! INIT STATE
+    time1 = const TimeOfDay(hour: 0, minute: 0);
+    time2 = const TimeOfDay(hour: 0, minute: 0);
+    newDesk = Desk(time: '00:00');
+    super.initState();
+  }
 
-    return 
-    // BlocBuilder(
-    //   builder: (context, state) =>
-      Scaffold(
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
+      late List<Task> tasksList;
+
+      if (state is TaskStateLoading) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (state is TaskStateLoaded) {
+        tasksList = state.tasks;
+      }
+
+      final List<DropdownMenuEntry<Chapsters>> tasksEntry =
+          <DropdownMenuEntry<Chapsters>>[];
+
+      for (final Task color in tasksList) {
+        if (color.title != null) {
+          tasksEntry.add(DropdownMenuEntry<Chapsters>(
+            value: Chapsters(color.title!),
+            label: color.title!,
+          ));
+        }
+      }
+
+      return Scaffold(
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(
-                  'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
-            fit: BoxFit.cover
-            ),
+                image: NetworkImage(
+                    'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
+                fit: BoxFit.cover),
           ),
           child: SafeArea(
             child: Expanded(
@@ -135,12 +126,10 @@ class _AddTaskState extends State<AddTask> {
                                 border: InputBorder.none,
                                 hintText: "Имя вашей задачи"),
                             onSubmitted: (String name) {
+                              // ! NAME
+                              newDesk.title = name;
                               setState(() {
                                 data = name;
-                                newDesk['title'] = name;
-                                item.title = name;
-                                list.add(name);
-                                print('title = ${item.title}');
                               });
                             },
                           ),
@@ -172,14 +161,11 @@ class _AddTaskState extends State<AddTask> {
                             const SizedBox(width: 30),
                             TextButton(
                               onPressed: () {
+                                // ! TIME 1
                                 _selectTime();
-                                newDesk['time'] = _time.toString();
-                                item.time = _time.format(context);
-                                list.add(_time.format(context));
-                                print('time = ${item.time}');
                               },
                               child: Text(
-                                _time.format(context),
+                                time1.format(context),
                                 style: const TextStyle(
                                   color: Colors.white60,
                                   fontSize: 19,
@@ -197,11 +183,11 @@ class _AddTaskState extends State<AddTask> {
                             ),
                             TextButton(
                               onPressed: () {
+                                // ! TIME 2
                                 _selectTime2();
-                                newDesk['time'] = _time2.toString();
                               },
                               child: Text(
-                                _time2.format(context),
+                                time2.format(context),
                                 style: const TextStyle(
                                   color: Colors.white60,
                                   fontSize: 19,
@@ -213,7 +199,8 @@ class _AddTaskState extends State<AddTask> {
                         ),
                       ],
                     ),
-                  ),const SizedBox(height: 7),
+                  ),
+                  const SizedBox(height: 7),
                   Container(
                       height: 600,
                       decoration: const BoxDecoration(
@@ -235,7 +222,11 @@ class _AddTaskState extends State<AddTask> {
                                 style: TextStyle(fontSize: 22),
                               ),
                               TextButton(
-                                onPressed: voidColorAmber,
+                                onPressed: () {
+                                  setState(() {
+                                    colorTab = Colors.cyan;
+                                  });
+                                },
                                 child: Container(
                                   height: 25,
                                   width: 25,
@@ -245,7 +236,11 @@ class _AddTaskState extends State<AddTask> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: voidColorBlue,
+                                onPressed: () {
+                                  setState(() {
+                                    colorTab = Colors.blue;
+                                  });
+                                },
                                 child: Container(
                                   height: 25,
                                   width: 25,
@@ -255,7 +250,11 @@ class _AddTaskState extends State<AddTask> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: voidColorPink,
+                                onPressed: () {
+                                  setState(() {
+                                    colorTab = Colors.pinkAccent;
+                                  });
+                                },
                                 child: Container(
                                   height: 25,
                                   width: 25,
@@ -265,7 +264,11 @@ class _AddTaskState extends State<AddTask> {
                                 ),
                               ),
                               TextButton(
-                                onPressed: voidcolorGreen,
+                                onPressed: () {
+                                  setState(() {
+                                    colorTab = Colors.green;
+                                  });
+                                },
                                 child: Container(
                                   height: 25,
                                   width: 25,
@@ -280,34 +283,31 @@ class _AddTaskState extends State<AddTask> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               DropdownMenu<Chapsters>(
-                                width: 150,
-                                dropdownMenuEntries: tasks,
-                                enableSearch: false,
-                                enableFilter: false,
-                                label: const Text("Раздел"),
-                                onSelected: (value) =>
-                                    newDesk['chapster'] = value,
-                              ),
+                                  width: 150,
+                                  dropdownMenuEntries: tasksEntry,
+                                  enableSearch: false,
+                                  enableFilter: false,
+                                  label: const Text("Раздел"),
+                                  onSelected: (value) {
+                                    // ! CHAPSTER
+                                    newDesk.chap = value!.label;
+                                  }),
                             ],
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              print(list[0]);
-                              print(list[1]);
-                              print('title = ${item.time}');
-                              print('time = ${item.title}');
-                              newDesk['chapster'];
-                              for (var r in widget.tasksList) {
-                                if (r.title == newDesk['chapster']) {
-                                  r.desc ??= [];
-                                  r.desc!.add(newDesk);
+                              // ! FINISH
+                              if (state is TaskStateLoaded) {
+                                for (var taskChap in state.tasks) {
+                                  if (taskChap.title == newDesk.chap) {
+                                    taskChap.desc!.add(newDesk);
+                                  }
                                 }
                               }
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      HomePage()));
+                                  builder: (context) => HomePage()));
                             },
-                            child: const Text('Готовонах'),
+                            child: const Text('Готово'),
                           ),
                         ],
                       )),
@@ -316,25 +316,12 @@ class _AddTaskState extends State<AddTask> {
             ),
           ),
         ),
-      
-    );
+      );
+    });
   }
 }
 
 class Chapsters {
   final String label;
   Chapsters(this.label);
-}
-
-class Item {
-  String title;
-  String time;
-  Color bgColor;
-  String slot;
-  Item(
-    this.title,
-    this.time,
-    this.bgColor,
-    this.slot,
-  );
 }
