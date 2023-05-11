@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, avoid_print
 
 import 'package:flutter/material.dart';
 import '../../models/task.dart';
@@ -16,35 +16,35 @@ class AddChapster extends StatefulWidget {
 class _AddChapsterState extends State<AddChapster> {
   String data = 'Имя вашей задачи';
   List<String> sections = ['Personal', 'Work', 'Health'];
-  Color colorTab = Color.fromARGB(255, 182, 255, 185);
+  Color colorTab = const Color.fromARGB(255, 182, 255, 185);
   IconData iconChapster = Icons.person;
   Color colorIcon = Colors.green;
 
   void voidcolorGreen() {
     setState(() {
-      colorTab = Color.fromARGB(255, 182, 255, 185);
+      colorTab = const Color.fromARGB(255, 182, 255, 185);
       colorIcon = Colors.green;
     });
   }
 
   void voidColorPink() {
     setState(() {
-      colorTab = Color.fromARGB(255, 255, 195, 215);
+      colorTab = const Color.fromARGB(255, 255, 195, 215);
       colorIcon = Colors.pink;
     });
   }
 
   void voidColorBlue() {
     setState(() {
-      colorTab = Color.fromARGB(255, 173, 217, 254);
+      colorTab = const Color.fromARGB(255, 173, 217, 254);
       colorIcon = Colors.blue;
     });
   }
 
   void voidColorAmber() {
     setState(() {
-      colorTab = Color.fromARGB(255, 254, 246, 171);
-      colorIcon = Color.fromARGB(255, 234, 211, 2);
+      colorTab = const Color.fromARGB(255, 254, 246, 171);
+      colorIcon = const Color.fromARGB(255, 234, 211, 2);
     });
   }
 
@@ -147,8 +147,8 @@ class _AddChapsterState extends State<AddChapster> {
                               ),
                             ],
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 12, top: 9),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 12, top: 9),
                             child: Text('0 left'),
                           ),
                         ),
@@ -169,8 +169,8 @@ class _AddChapsterState extends State<AddChapster> {
                               ),
                             ],
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 12, top: 9),
+                          child: const Padding(
+                            padding: EdgeInsets.only(left: 12, top: 9),
                             child: Text('0 done'),
                           ),
                         ),
@@ -196,7 +196,7 @@ class _AddChapsterState extends State<AddChapster> {
                           children: [
                             Row(
                               children: [
-                                Text(
+                                const Text(
                                   'Icon:',
                                   style: TextStyle(fontSize: 22),
                                 ),
@@ -206,35 +206,35 @@ class _AddChapsterState extends State<AddChapster> {
                                         iconChapster = Icons.call;
                                       });
                                     },
-                                    child: Icon(Icons.call)),
+                                    child: const Icon(Icons.call)),
                                 TextButton(
                                     onPressed: () {
                                       setState(() {
                                         iconChapster = Icons.shopping_cart;
                                       });
                                     },
-                                    child: Icon(Icons.shopping_cart)),
+                                    child: const Icon(Icons.shopping_cart)),
                                 TextButton(
                                     onPressed: () {
                                       setState(() {
                                         iconChapster = Icons.school;
                                       });
                                     },
-                                    child: Icon(Icons.school)),
+                                    child: const Icon(Icons.school)),
                                 TextButton(
                                     onPressed: () {
                                       setState(() {
                                         iconChapster = Icons.business_center;
                                       });
                                     },
-                                    child: Icon(Icons.business_center)),
+                                    child: const Icon(Icons.business_center)),
                                 TextButton(
                                     onPressed: () {
                                       setState(() {
                                         iconChapster = Icons.person;
                                       });
                                     },
-                                    child: Icon(Icons.person)),
+                                    child: const Icon(Icons.person)),
                               ],
                             ),
                             Row(
@@ -286,7 +286,7 @@ class _AddChapsterState extends State<AddChapster> {
                                 ),
                               ],
                             ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [],
                             ),

@@ -11,7 +11,7 @@ class GoPremium extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               
-          image: DecorationImage(
+          image: const DecorationImage(
             image: NetworkImage(
                 'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
           fit: BoxFit.cover

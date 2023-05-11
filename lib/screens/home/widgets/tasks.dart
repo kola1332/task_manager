@@ -49,7 +49,7 @@ class Tasks extends StatelessWidget {
                     // AddTask
                     AddChapster(tasksList)));
           },
-          child: Text(
+          child: const Text(
             '+ Add',
             style: TextStyle(color: Colors.black, fontSize: 20),
           ),

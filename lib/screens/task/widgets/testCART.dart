@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, file_names, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import '/models/task.dart';
@@ -14,7 +14,6 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  
   @override
   Widget build(BuildContext context) {
     final List<DropdownMenuEntry<Chapsters>> tasks =
@@ -30,34 +29,35 @@ class _CartState extends State<Cart> {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: 
-         Column(
-           children: [Container(width: 200,
-                    height: 200,
-                    color: Colors.pink,),
-             Container(height: 100,
-               child: ListView(scrollDirection: Axis.horizontal,
-                children: [
-                  Container(
-                    width: 1000,
-                    height: 1000,
-                    color: Colors.amber,
-                  ),
-                  Container(
-                    width: 1000,
-                    height: 1000,
-                    color: Colors.blue,
-                  ),Container(
-                    width: 1000,
-                    height: 1000,
-                    color: Colors.green,
-                  ),
-                ]
-                     ),
-             ),
-           ],
-         ),
-      
+      body: Column(
+        children: [
+          Container(
+            width: 200,
+            height: 200,
+            color: Colors.pink,
+          ),
+          Container(
+            height: 100,
+            child: ListView(scrollDirection: Axis.horizontal, children: [
+              Container(
+                width: 1000,
+                height: 1000,
+                color: Colors.amber,
+              ),
+              Container(
+                width: 1000,
+                height: 1000,
+                color: Colors.blue,
+              ),
+              Container(
+                width: 1000,
+                height: 1000,
+                color: Colors.green,
+              ),
+            ]),
+          ),
+        ],
+      ),
     );
   }
 }
