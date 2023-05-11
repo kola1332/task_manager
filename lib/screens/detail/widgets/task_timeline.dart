@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
+import '../../../models/task.dart';
+
 class TaskTimeline extends StatelessWidget {
-  final Map<String, dynamic> detail;
-  const TaskTimeline({required this.detail});
+  // final Map<String, dynamic> detail;
+  final Desk desk;
+  const TaskTimeline({required this.desk});
 
   @override
   Widget build(BuildContext context) {
@@ -12,23 +15,23 @@ class TaskTimeline extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
-            _buildTimeline(detail['tlColor']),
+            _buildTimeline(desk.tlColor),
             Expanded(
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  detail['time'],
+                  desk.time,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                detail['title'].isNotEmpty //!= ['']
+                desk.title != null
                     ? _buildCart(
-                        detail['bgColor'],
-                        detail['title'],
-                        detail['slot'],
+                        desk.bgColor ??= Colors.white,
+                        desk.title ??= '',
+                        desk.slot ??= '',
                       )
                     : _buildCart(Colors.white, '', ''),
               ],
@@ -66,7 +69,8 @@ class TaskTimeline extends StatelessWidget {
     );
   }
 
-  Widget _buildTimeline(Color color) {
+  Widget _buildTimeline(Color? color) {
+    color ??= Colors.grey.withOpacity(0.3);
     return Container(
       height: 80,
       width: 20,

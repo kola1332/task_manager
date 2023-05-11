@@ -17,12 +17,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // tasksList ??= Task.generateTasks();
     // return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
-    //   var tasksList;
-    //   if (state is TaskStateLoading) {
-    //     return Center(child: CircularProgressIndicator());
-    //   } else if (state is TaskStateLoaded) {
-    //     tasksList = state.tasks;
-    //   }
+      // var tasksList;
+      // if (state is TaskStateLoading) {
+      //   return const Center(child: CircularProgressIndicator());
+      // } else if (state is TaskStateLoaded) {
+        // tasksList = state.tasks;
+      // }
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: _buildAppBar(),
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
           elevation: 0,
           onPressed: () {
             Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => AddTask(tasksList)));
+                MaterialPageRoute(builder: (context) => AddTask()));
           },
           child: const Icon(
             Icons.add,
@@ -57,6 +57,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       );
+    }
   }
 
   Widget _buildBottomNavigationBar() {
@@ -131,4 +132,3 @@ class HomePage extends StatelessWidget {
       ],
     );
   }
-}

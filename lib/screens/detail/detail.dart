@@ -9,7 +9,7 @@ import 'widgets/task_timeline.dart';
 class Detailpage extends StatelessWidget {
   final Task task;
   var tasksList;
-   Detailpage(this.task,this.tasksList);
+  Detailpage(this.task, this.tasksList);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class Detailpage extends StatelessWidget {
                 )
               : SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (_, index) => TaskTimeline(detail: detailList[index]),
+                    (_, index) => TaskTimeline(desk: detailList[index]),
                     childCount: detailList.length,
                   ),
                 ),
@@ -66,18 +66,15 @@ class Detailpage extends StatelessWidget {
         onPressed: () => Navigator.of(context).pop(),
         iconSize: 20,
       ),
-      actions:  [IconButton(onPressed: (){
-           Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => 
-            // Cart
-            AddTask
-            // AddChapster
-            (tasksList)
-            ));
-        },
-         icon: const Icon(Icons.add),
-         iconSize: 30,),
-        
+      actions: [
+        IconButton(
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => AddTask()));
+          },
+          icon: const Icon(Icons.add),
+          iconSize: 30,
+        ),
       ],
       flexibleSpace: FlexibleSpaceBar(
         title: Column(

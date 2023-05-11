@@ -1,17 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/bloc/task_state.dart';
+import 'package:task_manager/data/repo.dart';
 
 import '../models/task.dart';
 
 class TaskCubit extends Cubit<TaskState> {
-  List<Task> tasks;
+  Repository repository = Repository();
+  List<Task> tasks = Task.generateTasks();
 
-  TaskCubit({required this.tasks}) : super(TaskStateEmpty());
+  TaskCubit({required this.repository}) : super(TaskStateEmpty());
 
   void getTasks() {
-    // if (state is TaskStateLoading) return;
-    // final currentState = state;
+    if (state is TaskStateLoading) return;
+    final currentState = state;
 
-    tasks = Task.generateTasks();
+    emit(TaskStateLoaded(tasks));
   }
 }

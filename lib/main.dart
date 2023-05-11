@@ -19,19 +19,19 @@ class MainApp extends StatelessWidget {
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
 
-    // return BlocProvider<TaskCubit>(
-    //   create: (context) => sl<TaskCubit>()..getTasks(),
-    //   child: MaterialApp(
-    //     debugShowCheckedModeBanner: false,
-    //     title: 'Flicker',
-    //     home: HomePage(),
-    //   ),
-    // );
-
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flickerфигифер',
-      home: HomePage(),
+    return BlocProvider<TaskCubit>(
+      create: (context) => sl<TaskCubit>()..getTasks(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flicker',
+        home: HomePage(),
+      ),
     );
+
+    // return MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   title: 'Flicker',
+    //   home: HomePage(),
+    // );
   }
 }

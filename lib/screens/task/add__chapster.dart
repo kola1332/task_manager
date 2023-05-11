@@ -302,7 +302,7 @@ class _AddChapsterState extends State<AddChapster> {
                                 for (var r in widget.tasksList) {
                                   if (r.title == newDesk['chapster']) {
                                     r.desc ??= [];
-                                    r.desc!.add(newDesk);
+                                    // r.desc!.add(newDesk);
                                   }
                                 }
                                 Navigator.of(context).push(MaterialPageRoute(
