@@ -54,7 +54,7 @@ class _AddTaskState extends State<AddTask> {
     // ! INIT STATE
     time1 = const TimeOfDay(hour: 0, minute: 0);
     time2 = const TimeOfDay(hour: 0, minute: 0);
-    newDesk = Desk(time: '00:00');
+    newDesk = Desk(time: '00:00', title: '');
     super.initState();
   }
 
@@ -227,6 +227,7 @@ class _AddTaskState extends State<AddTask> {
                                   setState(() {
                                     colorTab = Colors.cyan;
                                   });
+                                  newDesk.bgColor = Colors.cyan;
                                 },
                                 child: Container(
                                   height: 25,
@@ -241,6 +242,7 @@ class _AddTaskState extends State<AddTask> {
                                   setState(() {
                                     colorTab = Colors.blue;
                                   });
+                                  newDesk.bgColor = Colors.blue;
                                 },
                                 child: Container(
                                   height: 25,
@@ -255,6 +257,7 @@ class _AddTaskState extends State<AddTask> {
                                   setState(() {
                                     colorTab = Colors.pinkAccent;
                                   });
+                                  newDesk.bgColor = Colors.pinkAccent;
                                 },
                                 child: Container(
                                   height: 25,
@@ -269,6 +272,7 @@ class _AddTaskState extends State<AddTask> {
                                   setState(() {
                                     colorTab = Colors.green;
                                   });
+                                  newDesk.bgColor = Colors.green;
                                 },
                                 child: Container(
                                   height: 25,
@@ -305,8 +309,12 @@ class _AddTaskState extends State<AddTask> {
                                   }
                                 }
                               }
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                              SnackBar(
+                                content: Text('1'),
+                              );
+                              // Navigator.of(context).push(MaterialPageRoute(
+                              //     builder: (context) => HomePage()));
+                              Navigator.pop(context);
                             },
                             child: const Text('Готово'),
                           ),

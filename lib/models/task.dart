@@ -49,16 +49,16 @@ class Task {
               tlColor: kBlueDark,
               bgColor: kBlueLight,
             ),
-            Desk(
-              time: '11:00',
-              newTime: const TimeOfDay(hour: 8, minute: 0),
-              tlColor: kBlueDark,
-              bgColor: kBlueLight,
-            ),
-            Desk(
-              time: '12:00',
-              newTime: const TimeOfDay(hour: 2, minute: 0),
-            ),
+            // Desk(
+            //   time: '11:00',
+            //   newTime: const TimeOfDay(hour: 8, minute: 0),
+            //   tlColor: kBlueDark,
+            //   bgColor: kBlueLight,
+            // ),
+            // Desk(
+            //   time: '12:00',
+            //   newTime: const TimeOfDay(hour: 2, minute: 0),
+            // ),
             Desk(
               time: '13:00',
               newTime: const TimeOfDay(hour: 13, minute: 0),
@@ -67,14 +67,14 @@ class Task {
               tlColor: kYellowDark,
               bgColor: kYellowLight,
             ),
-            Desk(
-              time: '14:00',
-              newTime: const TimeOfDay(hour: 1, minute: 0),
-            ),
-            Desk(
-              time: '15:00',
-              newTime: const TimeOfDay(hour: 15, minute: 0),
-            ),
+            // Desk(
+            //   time: '14:00',
+            //   newTime: const TimeOfDay(hour: 1, minute: 0),
+            // ),
+            // Desk(
+            //   time: '15:00',
+            //   newTime: const TimeOfDay(hour: 15, minute: 0),
+            // ),
           ]),
       Task(
         iconData: Icons.cases_rounded,
@@ -102,7 +102,7 @@ class Task {
 class Desk {
   String time;
   TimeOfDay? newTime;
-  String? title;
+  String title;
   String? slot;
   Color? bgColor;
   Color? tlColor;
@@ -112,7 +112,7 @@ class Desk {
     required this.time,
     this.tlColor,
     this.bgColor,
-    this.title,
+    required this.title,
     this.slot,
     this.chap,
     this.newTime,

@@ -12,18 +12,22 @@ import 'widgets/timeline/task_timeline.dart';
 class Detailpage extends StatelessWidget {
   final Task task;
   List<Task> tasksList;
+  int i = 0;
   Detailpage(this.task, this.tasksList);
 
   @override
   Widget build(BuildContext context) {
-    TimelineEngine timelineEngine = TimelineEngine(task.desc!);
-    final detailList = timelineEngine.sort();
-    print('#');
-    for (var a in detailList) {
-      print(a.newTime);
+    List<Desk>? detailList;
+    if (task.desc != null) {
+      TimelineEngine timelineEngine = TimelineEngine(task.desc!);
+      detailList = timelineEngine.sort();
+      print('#');
+      for (var a in detailList) {
+        print(a.newTime);
+      }
     }
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           _buildAppBar(context),
@@ -43,7 +47,7 @@ class Detailpage extends StatelessWidget {
               ),
             ),
           ),
-          task.desc == null
+          detailList == null
               ? SliverFillRemaining(
                   child: Container(
                     color: Colors.white,
@@ -57,7 +61,13 @@ class Detailpage extends StatelessWidget {
               : SliverList(
                   // ! need change
                   delegate: SliverChildBuilderDelegate(
-                    (_, index) => TaskTimeline(desk: detailList[index]),
+                    (_, index) {
+                      i++;
+                      return TaskTimeline(
+                        desk: detailList![index],
+                        isLast: detailList.length == i ? false : true,
+                      );
+                    },
                     childCount: detailList.length,
                   ),
                 ),
