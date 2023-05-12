@@ -10,7 +10,7 @@ import 'widgets/task_timeline.dart';
 
 class Detailpage extends StatelessWidget {
   final Task task;
-  var tasksList;
+  List<Task> tasksList;
   Detailpage(this.task, this.tasksList);
 
   @override

@@ -9,7 +9,7 @@ import 'package:task_manager/screens/detail/detail.dart';
 import '../../task/add__chapster.dart';
 
 class Tasks extends StatelessWidget {
-  late final tasksList;
+  late final List<Task> tasksList;
 
   @override
   Widget build(BuildContext context) {

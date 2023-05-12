@@ -138,8 +138,8 @@ class _AddTaskState extends State<AddTask> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             const SizedBox(width: 20),
-                            Column(
-                              children: const [
+                            const Column(
+                              children: [
                                 Text(
                                   'Mon',
                                   style: TextStyle(
