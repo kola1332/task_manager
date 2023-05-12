@@ -302,19 +302,24 @@ class _AddTaskState extends State<AddTask> {
                           ElevatedButton(
                             onPressed: () {
                               // ! FINISH
-                              if (state is TaskStateLoaded) {
-                                for (var taskChap in state.tasks) {
-                                  if (taskChap.title == newDesk.chap) {
-                                    taskChap.desc!.add(newDesk);
+                              const errorTitle = SnackBar(
+                                content: Text('Введите название задачи'),
+                              );
+                              if (newDesk.title == '') {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(errorTitle);
+                              } else {
+                                if (state is TaskStateLoaded) {
+                                  for (var taskChap in state.tasks) {
+                                    if (taskChap.title == newDesk.chap) {
+                                      taskChap.desc!.add(newDesk);
+                                    }
                                   }
                                 }
+                                Navigator.pop(context);
                               }
-                              SnackBar(
-                                content: Text('1'),
-                              );
                               // Navigator.of(context).push(MaterialPageRoute(
                               //     builder: (context) => HomePage()));
-                              Navigator.pop(context);
                             },
                             child: const Text('Готово'),
                           ),
