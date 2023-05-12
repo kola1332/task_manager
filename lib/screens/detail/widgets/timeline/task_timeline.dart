@@ -6,7 +6,10 @@ import '../../../../models/task.dart';
 class TaskTimeline extends StatelessWidget {
   // final Map<String, dynamic> detail;
   final Desk desk;
-  const TaskTimeline({required this.desk});
+  // final int lenght;
+  // int index = 0;
+  bool isLast;
+  TaskTimeline({required this.desk, required this.isLast});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +18,7 @@ class TaskTimeline extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
-            _buildTimeline(desk.tlColor),
+            _buildTimeline(desk.tlColor, isLast),
             Expanded(
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +33,7 @@ class TaskTimeline extends StatelessWidget {
                 desk.title != null
                     ? _buildCart(
                         desk.bgColor ??= Colors.white,
-                        desk.title ??= '',
+                        desk.title,
                         desk.slot ??= '',
                       )
                     : _buildCart(Colors.white, '', ''),
@@ -69,30 +72,81 @@ class TaskTimeline extends StatelessWidget {
     );
   }
 
-  Widget _buildTimeline(Color? color) {
+  Widget _buildTimeline(Color? color, bool isLast) {
     color ??= Colors.grey.withOpacity(0.3);
-    return Container(
-      height: 80,
-      width: 20,
-      child: TimelineTile(
-        alignment: TimelineAlign.manual,
-        lineXY: 0,
-        isFirst: true,
-        indicatorStyle: IndicatorStyle(
-          indicatorXY: 0,
-          width: 15,
-          indicator: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                border: Border.all(width: 5, color: color)),
-          ),
-        ),
-        afterLineStyle: LineStyle(
-          thickness: 2,
-          color: color,
-        ),
-      ),
-    );
+    return isLast
+        ? Container(
+            height: 80,
+            width: 20,
+            child: TimelineTile(
+              alignment: TimelineAlign.manual,
+              lineXY: 0,
+              isFirst: true,
+              indicatorStyle: IndicatorStyle(
+                indicatorXY: 0,
+                width: 15,
+                indicator: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(width: 5, color: color)),
+                ),
+              ),
+              afterLineStyle: LineStyle(
+                thickness: 2,
+                color: color,
+              ),
+            ),
+          )
+        : Column(
+            children: [
+              Container(
+                height: 70,
+                width: 20,
+                child: TimelineTile(
+                  alignment: TimelineAlign.manual,
+                  lineXY: 0,
+                  isFirst: true,
+                  indicatorStyle: IndicatorStyle(
+                    indicatorXY: 0,
+                    width: 15,
+                    indicator: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(width: 5, color: color)),
+                    ),
+                  ),
+                  afterLineStyle: LineStyle(
+                    thickness: 2,
+                    color: color,
+                  ),
+                ),
+              ),
+              Container(
+                height: 20,
+                width: 20,
+                child: TimelineTile(
+                  alignment: TimelineAlign.manual,
+                  lineXY: 0,
+                  isFirst: true,
+                  indicatorStyle: IndicatorStyle(
+                    indicatorXY: 0,
+                    width: 15,
+                    indicator: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(width: 5, color: color)),
+                    ),
+                  ),
+                  afterLineStyle: LineStyle(
+                    thickness: 2,
+                    color: color,
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 }
