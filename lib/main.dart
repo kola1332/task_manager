@@ -15,6 +15,16 @@ void main() async {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // var brightness = MediaQuery.of(context).platformBrightness;
+    // bool isDarkMode = brightness == Brightness.dark;
+    // ThemeData lightTheme = ThemeData(
+    //   colorSchemeSeed: Theme.of(context).primaryColor,
+    //   brightness: Brightness.light,
+    // );
+    // ThemeData darkTheme = ThemeData(
+    //   colorSchemeSeed: Theme.of(context).primaryColor,
+    //   brightness: Brightness.dark,
+    // );
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
@@ -22,6 +32,8 @@ class MainApp extends StatelessWidget {
     return BlocProvider<TaskCubit>(
       create: (context) => sl<TaskCubit>()..getTasks(),
       child: MaterialApp(
+        // theme: lightTheme,
+        // darkTheme: darkTheme,
         debugShowCheckedModeBanner: false,
         title: 'Flicker',
         home: HomePage(),
