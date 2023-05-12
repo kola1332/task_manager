@@ -32,6 +32,7 @@ class _AddTaskState extends State<AddTask> {
       setState(() {
         time1 = newTime;
         newDesk.time = newTime.format(context);
+        newDesk.newTime = newTime;
       });
     }
   }

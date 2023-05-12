@@ -35,6 +35,7 @@ class Task {
           desc: [
             Desk(
               time: '9:00',
+              newTime: const TimeOfDay(hour: 4, minute: 0),
               title: 'Go for a walk with dog',
               slot: '9:00 - 10:00',
               tlColor: kRedDark,
@@ -42,6 +43,7 @@ class Task {
             ),
             Desk(
               time: '10:00',
+              newTime: const TimeOfDay(hour: 10, minute: 0),
               title: 'Shot on Dribble',
               slot: '9:00 - 10:00',
               tlColor: kBlueDark,
@@ -49,14 +51,17 @@ class Task {
             ),
             Desk(
               time: '11:00',
+              newTime: const TimeOfDay(hour: 8, minute: 0),
               tlColor: kBlueDark,
               bgColor: kBlueLight,
             ),
             Desk(
               time: '12:00',
+              newTime: const TimeOfDay(hour: 2, minute: 0),
             ),
             Desk(
               time: '13:00',
+              newTime: const TimeOfDay(hour: 13, minute: 0),
               title: 'Call with client',
               slot: '13:00 - 14:00',
               tlColor: kYellowDark,
@@ -64,9 +69,11 @@ class Task {
             ),
             Desk(
               time: '14:00',
+              newTime: const TimeOfDay(hour: 1, minute: 0),
             ),
             Desk(
               time: '15:00',
+              newTime: const TimeOfDay(hour: 15, minute: 0),
             ),
           ]),
       Task(
@@ -94,6 +101,7 @@ class Task {
 
 class Desk {
   String time;
+  TimeOfDay? newTime;
   String? title;
   String? slot;
   Color? bgColor;
@@ -107,5 +115,6 @@ class Desk {
     this.title,
     this.slot,
     this.chap,
+    this.newTime,
   });
 }

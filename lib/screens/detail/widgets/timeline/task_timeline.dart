@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-import '../../../models/task.dart';
+import '../../../../models/task.dart';
 
 class TaskTimeline extends StatelessWidget {
   // final Map<String, dynamic> detail;
@@ -22,7 +22,7 @@ class TaskTimeline extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  desk.time,
+                  desk.newTime!.format(context),
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                   ),

@@ -3,10 +3,11 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/widgets/task_title.dart';
+import 'package:task_manager/screens/detail/widgets/timeline/timeline_logic.dart';
 
 import '../task/add_task.dart';
 import 'widgets/date_picker.dart';
-import 'widgets/task_timeline.dart';
+import 'widgets/timeline/task_timeline.dart';
 
 class Detailpage extends StatelessWidget {
   final Task task;
@@ -15,7 +16,12 @@ class Detailpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final detailList = task.desc;
+    TimelineEngine timelineEngine = TimelineEngine(task.desc!);
+    final detailList = timelineEngine.sort();
+    print('#');
+    for (var a in detailList) {
+      print(a.newTime);
+    }
     return Scaffold(
       backgroundColor: Colors.black,
       body: CustomScrollView(
@@ -37,7 +43,7 @@ class Detailpage extends StatelessWidget {
               ),
             ),
           ),
-          detailList == null
+          task.desc == null
               ? SliverFillRemaining(
                   child: Container(
                     color: Colors.white,
@@ -49,6 +55,7 @@ class Detailpage extends StatelessWidget {
                   ),
                 )
               : SliverList(
+                  // ! need change
                   delegate: SliverChildBuilderDelegate(
                     (_, index) => TaskTimeline(desk: detailList[index]),
                     childCount: detailList.length,
