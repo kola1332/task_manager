@@ -4,10 +4,7 @@ import 'package:timeline_tile/timeline_tile.dart';
 import '../../../../models/task.dart';
 
 class TaskTimeline extends StatelessWidget {
-  // final Map<String, dynamic> detail;
   final Desk desk;
-  // final int lenght;
-  // int index = 0;
   bool isLast;
   TaskTimeline({required this.desk, required this.isLast});
 
