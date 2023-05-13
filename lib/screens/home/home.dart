@@ -9,9 +9,10 @@ import '../task/add_task.dart';
 class HomePage extends StatelessWidget {
   late List<Task> tasksList;
 
+
   @override
   Widget build(BuildContext context) {
-    // tasksList ??= Task.generateTasks();
+    tasksList ??= Task.generateTasks();
     // return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
     // var tasksList;
     // if (state is TaskStateLoading) {
