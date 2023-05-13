@@ -103,7 +103,7 @@ class _AddTaskState extends State<AddTask> {
             child: Expanded(
               child: ListView(
                 children: [
-                  Container(
+                  AnimatedContainer(duration: const Duration(milliseconds: 700),
                     margin: const EdgeInsets.all(8),
                     height: 160,
                     decoration: BoxDecoration(
