@@ -27,6 +27,25 @@ class Detailpage extends StatelessWidget {
       }
     }
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          // side: BorderSide(
+          //   // color: Colors.black,
+          // ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        backgroundColor: Colors.green.shade300,
+        elevation: 0,
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddTask()));
+        },
+        child: const Icon(
+          Icons.add,
+          size: 35,
+          color: Colors.black,
+        ),
+      ),
       // backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
