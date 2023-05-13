@@ -8,6 +8,9 @@ class TaskStateLoading extends TaskState {}
 
 class TaskStateLoaded extends TaskState {
   final List<Task> tasks;
+  // List<Map> desks = [];
+  // Map newDesk = {};
+  Desk? newDesk;
 
   TaskStateLoaded(this.tasks);
 }

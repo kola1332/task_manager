@@ -1,6 +1,3 @@
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 class DatePicker extends StatefulWidget {
@@ -30,8 +27,8 @@ class _DatePickerState extends State<DatePicker> {
         GestureDetector(
           onTap: () => setState(() => selected = index),
           child: Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.symmetric(horizontal: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: selected == index ? Colors.grey.withOpacity(0.1) : null
@@ -41,7 +38,7 @@ class _DatePickerState extends State<DatePicker> {
                 Text(weelList[index], style: TextStyle(
                   color: selected == index ? Colors.black : Colors.grey
                 ),),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(dayList[index], style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -51,7 +48,7 @@ class _DatePickerState extends State<DatePicker> {
             ),
           ),
         ),
-        separatorBuilder: (_, index) => SizedBox(width: 5),
+        separatorBuilder: (_, index) => const SizedBox(width: 5),
         itemCount: weelList.length,
       )
     );
