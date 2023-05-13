@@ -52,6 +52,7 @@ class TaskTimeline extends StatelessWidget {
             topRight: Radius.circular(10),
             bottomLeft: Radius.circular(10),
             bottomRight: Radius.circular(10),
+            topLeft: Radius.circular(10),
           )),
       padding: const EdgeInsets.all(15),
       margin: const EdgeInsets.all(5),
