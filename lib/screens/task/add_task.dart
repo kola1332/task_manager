@@ -94,7 +94,8 @@ class _AddTaskState extends State<AddTask> {
           child: SafeArea(
             child: Column(
               children: [
-                Container(
+                AnimatedContainer(
+                  duration: const Duration(seconds: 1),
                   margin: const EdgeInsets.all(8),
                   height: 160,
                   decoration: BoxDecoration(
@@ -316,9 +317,9 @@ class _AddTaskState extends State<AddTask> {
                             } else if (newDesk.chap == null) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(errorChapster);
-                            // } else if (newDesk.time == TimeOfDay(hour: 0,minute: 0)) {
-                            //   ScaffoldMessenger.of(context)
-                            //       .showSnackBar(errorTime);
+                              // } else if (newDesk.time == TimeOfDay(hour: 0,minute: 0)) {
+                              //   ScaffoldMessenger.of(context)
+                              //       .showSnackBar(errorTime);
                             } else {
                               if (state is TaskStateLoaded) {
                                 for (var taskChap in state.tasks) {
