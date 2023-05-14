@@ -29,7 +29,7 @@ class TaskTimeline extends StatelessWidget {
                 ),
                 desk.title != null
                     ? _buildCart(
-                        desk.bgColor ??= Colors.white,
+                        desk.bgColor ??= Colors.grey.shade300,
                         desk.title,
                         desk.slot ??= '',
                       )

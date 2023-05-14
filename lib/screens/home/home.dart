@@ -38,20 +38,20 @@ class HomePage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        backgroundColor: Colors.black,
-        elevation: 0,
-        onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => AddTask()));
-        },
-        child: const Icon(
-          Icons.add,
-          size: 35,
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      //   backgroundColor: Colors.black,
+      //   elevation: 0,
+      //   onPressed: () {
+      //     Navigator.of(context)
+      //         .push(MaterialPageRoute(builder: (context) => AddTask()));
+      //   },
+      //   child: const Icon(
+      //     Icons.add,
+      //     size: 35,
+      //   ),
+      // ),
     );
   }
 }
