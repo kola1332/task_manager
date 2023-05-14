@@ -7,7 +7,7 @@ import '../../models/task.dart';
 import '../task/add_task.dart';
 
 class HomePage extends StatelessWidget {
-  late List<Task> tasksList;
+  List<Task>? tasksList;
 
 
   @override
