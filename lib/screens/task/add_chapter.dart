@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import '../../models/task.dart';
 import '../home/home.dart';
 
-class AddChapster extends StatefulWidget {
+class AddChapter extends StatefulWidget {
   TextEditingController controller = TextEditingController();
   List<Task> tasksList;
-  AddChapster(this.tasksList);
+  AddChapter(this.tasksList);
 
   @override
-  State<AddChapster> createState() => _AddChapsterState();
+  State<AddChapter> createState() => _AddChapterState();
 }
 
-class _AddChapsterState extends State<AddChapster> {
+class _AddChapterState extends State<AddChapter> {
   String data = 'Имя вашей задачи';
   List<String> sections = ['Personal', 'Work', 'Health'];
   Color colorTab = const Color.fromARGB(255, 182, 255, 185);
