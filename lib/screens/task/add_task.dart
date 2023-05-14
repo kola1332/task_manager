@@ -71,13 +71,13 @@ class _AddTaskState extends State<AddTask> {
         tasksList = state.tasks;
       }
 
-      final List<DropdownMenuEntry<Chapsters>> tasksEntry =
-          <DropdownMenuEntry<Chapsters>>[];
+      final List<DropdownMenuEntry<Chapters>> tasksEntry =
+          <DropdownMenuEntry<Chapters>>[];
 
       for (final Task color in tasksList) {
         if (color.title != null) {
-          tasksEntry.add(DropdownMenuEntry<Chapsters>(
-            value: Chapsters(color.title!),
+          tasksEntry.add(DropdownMenuEntry<Chapters>(
+            value: Chapters(color.title!),
             label: color.title!,
           ));
         }
@@ -94,113 +94,7 @@ class _AddTaskState extends State<AddTask> {
           child: SafeArea(
             child: Column(
               children: [
-                AnimatedContainer(
-                  duration: const Duration(seconds: 1),
-                  margin: const EdgeInsets.all(8),
-                  height: 160,
-                  decoration: BoxDecoration(
-                    color: colorTab,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: colorTab.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 12,
-                        offset: const Offset(3, 3),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15, right: 15),
-                        child: TextField(
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 27, 27, 27),
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          controller: widget.controller,
-                          decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Имя вашей задачи"),
-                          onSubmitted: (String name) {
-                            // ! NAME
-                            newDesk.title = name;
-                            setState(() {
-                              data = name;
-                            });
-                          },
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(width: 20),
-                          const Column(
-                            children: [
-                              Text(
-                                'Mon',
-                                style: TextStyle(
-                                  color: Colors.white60,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                '24',
-                                style: TextStyle(
-                                  color: Colors.white60,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(width: 30),
-                          TextButton(
-                            onPressed: () {
-                              // ! TIME 1
-                              _selectTime();
-                            },
-                            child: Text(
-                              time1.format(context),
-                              style: const TextStyle(
-                                color: Colors.white60,
-                                fontSize: 19,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          const Text(
-                            '-',
-                            style: TextStyle(
-                              color: Colors.white60,
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // ! TIME 2
-                              _selectTime2();
-                            },
-                            child: Text(
-                              time2.format(context),
-                              style: const TextStyle(
-                                color: Colors.white60,
-                                fontSize: 19,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                _buildPresentationContainer(context),
                 const SizedBox(height: 7),
                 Container(
                     // height: 600,
@@ -215,79 +109,11 @@ class _AddTaskState extends State<AddTask> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         DatePicker(),
+                        _buildColor(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            const Text(
-                              'Color:',
-                              style: TextStyle(fontSize: 22),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  colorTab = Colors.cyan;
-                                });
-                                newDesk.bgColor = Colors.cyan;
-                              },
-                              child: Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                    color: Colors.cyan,
-                                    borderRadius: BorderRadius.circular(50)),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  colorTab = Colors.blue;
-                                });
-                                newDesk.bgColor = Colors.blue;
-                              },
-                              child: Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(50)),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  colorTab = Colors.pinkAccent;
-                                });
-                                newDesk.bgColor = Colors.pinkAccent;
-                              },
-                              child: Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                    color: Colors.pinkAccent,
-                                    borderRadius: BorderRadius.circular(50)),
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  colorTab = Colors.green;
-                                });
-                                newDesk.bgColor = Colors.green;
-                              },
-                              child: Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                    color: Colors.green,
-                                    borderRadius: BorderRadius.circular(50)),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            DropdownMenu<Chapsters>(
+                            DropdownMenu<Chapters>(
                                 width: 150,
                                 dropdownMenuEntries: tasksEntry,
                                 enableSearch: false,
@@ -344,9 +170,191 @@ class _AddTaskState extends State<AddTask> {
       );
     });
   }
+
+  Row _buildColor() {
+    return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const Text(
+                            'Color:',
+                            style: TextStyle(fontSize: 22),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                colorTab = Colors.cyan;
+                              });
+                              newDesk.bgColor = Colors.cyan;
+                            },
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  color: Colors.cyan,
+                                  borderRadius: BorderRadius.circular(50)),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                colorTab = Colors.blue;
+                              });
+                              newDesk.bgColor = Colors.blue;
+                            },
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(50)),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                colorTab = Colors.pinkAccent;
+                              });
+                              newDesk.bgColor = Colors.pinkAccent;
+                            },
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  color: Colors.pinkAccent,
+                                  borderRadius: BorderRadius.circular(50)),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                colorTab = Colors.green;
+                              });
+                              newDesk.bgColor = Colors.green;
+                            },
+                            child: Container(
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(50)),
+                            ),
+                          ),
+                        ],
+                      );
+  }
+
+  AnimatedContainer _buildPresentationContainer(BuildContext context) {
+    return AnimatedContainer(
+                duration: const Duration(seconds: 1),
+                margin: const EdgeInsets.all(8),
+                height: 160,
+                decoration: BoxDecoration(
+                  color: colorTab,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: colorTab.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 12,
+                      offset: const Offset(3, 3),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: TextField(
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 27, 27, 27),
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        controller: widget.controller,
+                        decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Имя вашей задачи"),
+                        onSubmitted: (String name) {
+                          // ! NAME
+                          newDesk.title = name;
+                          setState(() {
+                            data = name;
+                          });
+                        },
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const SizedBox(width: 20),
+                        const Column(
+                          children: [
+                            Text(
+                              'Mon',
+                              style: TextStyle(
+                                color: Colors.white60,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '24',
+                              style: TextStyle(
+                                color: Colors.white60,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(width: 30),
+                        TextButton(
+                          onPressed: () {
+                            // ! TIME 1
+                            _selectTime();
+                          },
+                          child: Text(
+                            time1.format(context),
+                            style: const TextStyle(
+                              color: Colors.white60,
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        const Text(
+                          '-',
+                          style: TextStyle(
+                            color: Colors.white60,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            // ! TIME 2
+                            _selectTime2();
+                          },
+                          child: Text(
+                            time2.format(context),
+                            style: const TextStyle(
+                              color: Colors.white60,
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+  }
 }
 
-class Chapsters {
+class Chapters {
   final String label;
-  Chapsters(this.label);
+  Chapters(this.label);
 }
