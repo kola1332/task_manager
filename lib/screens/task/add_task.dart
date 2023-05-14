@@ -27,6 +27,7 @@ class _AddTaskState extends State<AddTask> {
   late Desk newDesk;
   String data = 'Имя вашей задачи';
   Color colorTab = Colors.grey.shade300;
+  late double wh;
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
@@ -60,6 +61,7 @@ class _AddTaskState extends State<AddTask> {
     time1 = const TimeOfDay(hour: 0, minute: 0);
     time2 = const TimeOfDay(hour: 0, minute: 0);
     newDesk = Desk(title: '');
+    wh = 0;
     super.initState();
   }
 
@@ -199,95 +201,104 @@ class _AddTaskState extends State<AddTask> {
     });
   }
 
-  Row _buildColor() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        const Text(
-          'Color:',
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-        ),
-        TextButton(
-          onPressed: () {
-            setState(() {
-              colorTab = kYellowLight;
-            });
-            newDesk.bgColor = kYellowLight;
-            newDesk.tlColor = kYellowDark;
-          },
-          child: Container(
-            height: 33,
-            width: 33,
-            decoration: BoxDecoration(
-                color: kYellowDark,
-                borderRadius: BorderRadius.circular(50),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1.5,
-                )),
+  Container _buildColor() {
+    return Container(
+      height: 60,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const Text(
+            'Color:',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
           ),
-        ),
-        TextButton(
-          onPressed: () {
-            setState(() {
-              colorTab = kRedLight;
-            });
-            newDesk.bgColor = kRedLight;
-            newDesk.tlColor = kRedDark;
-          },
-          child: Container(
-            height: 33,
-            width: 33,
-            decoration: BoxDecoration(
-                color: kRedDark,
-                borderRadius: BorderRadius.circular(50),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1.3,
-                )),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                wh = 0;
+                colorTab = kYellowLight;
+              });
+              newDesk.bgColor = kYellowLight;
+              newDesk.tlColor = kYellowDark;
+            },
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 400),
+              height: wh == 0 ? 45 : 33,
+              width: wh == 0 ? 45 : 33,
+              decoration: BoxDecoration(
+                  color: kYellowDark,
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.5,
+                  )),
+            ),
           ),
-        ),
-        TextButton(
-          onPressed: () {
-            setState(() {
-              colorTab = kBlueLight;
-            });
-            newDesk.bgColor = kBlueLight;
-            newDesk.tlColor = kBlueDark;
-          },
-          child: Container(
-            height: 33,
-            width: 33,
-            decoration: BoxDecoration(
-                color: kBlueDark,
-                borderRadius: BorderRadius.circular(50),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1.3,
-                )),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                wh = 1;
+                colorTab = kRedLight;
+              });
+              newDesk.bgColor = kRedLight;
+              newDesk.tlColor = kRedDark;
+            },
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 400),
+              height: wh == 1 ? 45 : 33,
+              width: wh == 1 ? 45 : 33,
+              decoration: BoxDecoration(
+                  color: kRedDark,
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.3,
+                  )),
+            ),
           ),
-        ),
-        // TextButton(
-        //   onPressed: () {
-        //     setState(() {
-        //       colorTab = Colors.green.shade100;
-        //     });
-        //     newDesk.bgColor = Colors.green.shade100;
-        //     newDesk.tlColor = Colors.green;
-        //   },
-        //   child: Container(
-        //     height: 33,
-        //     width: 33,
-        //     decoration: BoxDecoration(
-        //         color: Colors.green.shade100,
-        //         borderRadius: BorderRadius.circular(50),
-        //         border: Border.all(
-        //           color: Colors.black,
-        //           width: 1.3,
-        //         )),
-        //   ),
-        // ),
-      ],
+          TextButton(
+            onPressed: () {
+              setState(() {
+                wh = 2;
+                colorTab = kBlueLight;
+              });
+              newDesk.bgColor = kBlueLight;
+              newDesk.tlColor = kBlueDark;
+            },
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 400),
+              height: wh == 2 ? 45 : 33,
+              width: wh == 2 ? 45 : 33,
+              decoration: BoxDecoration(
+                  color: kBlueDark,
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1.3,
+                  )),
+            ),
+          ),
+          // TextButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       colorTab = Colors.green.shade100;
+          //     });
+          //     newDesk.bgColor = Colors.green.shade100;
+          //     newDesk.tlColor = Colors.green;
+          //   },
+          //   child: Container(
+          //     height: 33,
+          //     width: 33,
+          //     decoration: BoxDecoration(
+          //         color: Colors.green.shade100,
+          //         borderRadius: BorderRadius.circular(50),
+          //         border: Border.all(
+          //           color: Colors.black,
+          //           width: 1.3,
+          //         )),
+          //   ),
+          // ),
+        ],
+      ),
     );
   }
 

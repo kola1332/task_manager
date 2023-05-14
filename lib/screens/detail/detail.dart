@@ -30,7 +30,7 @@ class Detailpage extends StatelessWidget {
           // ),
           borderRadius: BorderRadius.circular(10),
         ),
-        backgroundColor: Colors.green.shade300,
+        backgroundColor: task.btnColor,
         elevation: 0,
         onPressed: () {
           Navigator.of(context)

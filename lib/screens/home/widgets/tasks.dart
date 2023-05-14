@@ -41,15 +41,17 @@ class Tasks extends StatelessWidget {
       color: Colors.grey,
       strokeWidth: 2,
       child: Center(
-        child: TextButton(
-          onPressed: () {
-            // Navigator.of(context).push(MaterialPageRoute(
-            //     builder: (context) =>
-            //         // Cart
-            //         // AddTask
-            //         AddChapter(tasksList)));
-          },
-          child: Column(
+        child:
+        //  TextButton(
+        //   onPressed: () {
+        //     // Navigator.of(context).push(MaterialPageRoute(
+        //     //     builder: (context) =>
+        //     //         // Cart
+        //     //         // AddTask
+        //     //         AddChapter(tasksList)));
+        //   },
+        //   child: 
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
@@ -63,8 +65,7 @@ class Tasks extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildTask(BuildContext context, Task task) {
