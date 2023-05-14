@@ -43,15 +43,24 @@ class Tasks extends StatelessWidget {
       child: Center(
         child: TextButton(
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    // Cart
-                    // AddTask
-                    AddChapster(tasksList)));
+            // Navigator.of(context).push(MaterialPageRoute(
+            //     builder: (context) =>
+            //         // Cart
+            //         // AddTask
+            //         AddChapter(tasksList)));
           },
-          child: const Text(
-            '+ Add',
-            style: TextStyle(color: Colors.black, fontSize: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '+ Add',
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
+               Text(
+                'not work yet',
+                style: TextStyle(color: Colors.red.shade600, fontSize: 14),
+              ),
+            ],
           ),
         ),
       ),
