@@ -6,8 +6,6 @@ import 'package:task_manager/bloc/task_state.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/detail.dart';
 
-import '../../task/add_chapter.dart';
-
 class Tasks extends StatelessWidget {
   late final List<Task> tasksList;
 
@@ -72,7 +70,7 @@ class Tasks extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Detailpage(task)));
+            builder: (context) => DetailPage(task)));
       },
       child: Container(
         padding: const EdgeInsets.all(15),

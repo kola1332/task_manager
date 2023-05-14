@@ -185,7 +185,7 @@ class _AddTaskState extends State<AddTask> {
                               }
                             }
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Detailpage(task)));
+                                builder: (context) => DetailPage(task)));
                             // Navigator.pop(context);
                           }
                         },
@@ -201,8 +201,8 @@ class _AddTaskState extends State<AddTask> {
     });
   }
 
-  Container _buildColor() {
-    return Container(
+  SizedBox _buildColor() {
+    return SizedBox(
       height: 60,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -221,7 +221,7 @@ class _AddTaskState extends State<AddTask> {
               newDesk.tlColor = kYellowDark;
             },
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 400),
               height: wh == 0 ? 45 : 33,
               width: wh == 0 ? 45 : 33,
               decoration: BoxDecoration(
@@ -243,7 +243,7 @@ class _AddTaskState extends State<AddTask> {
               newDesk.tlColor = kRedDark;
             },
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 400),
               height: wh == 1 ? 45 : 33,
               width: wh == 1 ? 45 : 33,
               decoration: BoxDecoration(
@@ -265,7 +265,7 @@ class _AddTaskState extends State<AddTask> {
               newDesk.tlColor = kBlueDark;
             },
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 400),
               height: wh == 2 ? 45 : 33,
               width: wh == 2 ? 45 : 33,
               decoration: BoxDecoration(

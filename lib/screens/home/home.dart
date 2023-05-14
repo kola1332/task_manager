@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/screens/home/widgets/go_premium.dart';
 import 'package:task_manager/screens/home/widgets/tasks.dart';
 import '../../models/task.dart';
-import '../task/add_task.dart';
 
 class HomePage extends StatelessWidget {
   List<Task>? tasksList;
@@ -102,7 +101,7 @@ AppBar _buildAppBar() {
     elevation: 0,
     title: Row(
       children: [
-        Container(
+        SizedBox(
           height: 45,
           width: 45,
           child: ClipRRect(

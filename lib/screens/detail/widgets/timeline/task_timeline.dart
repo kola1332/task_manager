@@ -5,8 +5,8 @@ import '../../../../models/task.dart';
 
 class TaskTimeline extends StatelessWidget {
   final Desk desk;
-  bool isLast;
-  TaskTimeline({required this.desk, required this.isLast});
+  final bool isLast;
+  const TaskTimeline({required this.desk, required this.isLast});
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +29,14 @@ class TaskTimeline extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                desk.title != null
-                    ? _buildCart(
+                // desk.title != null
+                    // ?
+                     _buildCart(
                         desk.bgColor ??= Colors.grey.shade300,
                         desk.title,
                         desk.slot ??= '',
                       )
-                    : _buildCart(Colors.white, '', ''),
+                    // : _buildCart(Colors.white, '', ''),
               ],
             )),
           ],
@@ -75,7 +76,7 @@ class TaskTimeline extends StatelessWidget {
   Widget _buildTimeline(Color? color, bool isLast) {
     color ??= Colors.grey.withOpacity(0.3);
     return isLast
-        ? Container(
+        ? SizedBox(
             height: 80,
             width: 20,
             child: TimelineTile(
@@ -100,7 +101,7 @@ class TaskTimeline extends StatelessWidget {
           )
         : Column(
             children: [
-              Container(
+              SizedBox(
                 height: 70,
                 width: 20,
                 child: TimelineTile(
@@ -123,7 +124,7 @@ class TaskTimeline extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 20,
                 width: 20,
                 child: TimelineTile(
