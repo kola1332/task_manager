@@ -7,6 +7,7 @@ import 'package:task_manager/screens/detail/detail.dart';
 
 import '../../bloc/task_cubit.dart';
 import '../../bloc/task_state.dart';
+import '../../constants/colors.dart';
 import '../../models/task.dart';
 import '../detail/widgets/date_picker.dart';
 
@@ -25,7 +26,7 @@ class _AddTaskState extends State<AddTask> {
   late TimeOfDay time2;
   late Desk newDesk;
   String data = 'Имя вашей задачи';
-  Color colorTab = Colors.green;
+  Color colorTab = Colors.grey.shade300;
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
@@ -80,13 +81,13 @@ class _AddTaskState extends State<AddTask> {
       // Chapter chapter = Chapter(widget.task.title!);
       int indexChap = 0;
 
-      for (int i = 0;i < tasksList.length; i++ ) {
+      for (int i = 0; i < tasksList.length; i++) {
         if (tasksList[i].title != null) {
           tasksEntry.add(DropdownMenuEntry<Chapter>(
             value: Chapter(tasksList[i].title!),
             label: tasksList[i].title!,
           ));
-          if(widget.task.title == tasksList[i].title) {
+          if (widget.task.title == tasksList[i].title) {
             indexChap = i;
           }
         }
@@ -112,7 +113,10 @@ class _AddTaskState extends State<AddTask> {
         body: SafeArea(
           child: ListView(
             children: [
-              _buildPresentationContainer(context),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: _buildPresentationContainer(context),
+              ),
               // const SizedBox(height: 7),
               Container(
                   // height: 70,
@@ -128,7 +132,7 @@ class _AddTaskState extends State<AddTask> {
                     children: [
                       DatePicker(),
                       _buildColor(),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 12),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -144,7 +148,7 @@ class _AddTaskState extends State<AddTask> {
                               }),
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 13),
                       ElevatedButton(
                         onPressed: () {
                           // ! FINISH
@@ -161,12 +165,12 @@ class _AddTaskState extends State<AddTask> {
                           if (newDesk.title == '') {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(errorTitle);
-                          // } else if (newDesk.chap == null) {
+                            // } else if (newDesk.chap == null) {
                             // ScaffoldMessenger.of(context)
                             //     .showSnackBar(errorChapter);
-                            } else if (newDesk.newTime == null) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(errorTime);
+                          } else if (newDesk.newTime == null) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(errorTime);
                           } else {
                             newDesk.chap ??= tasksEntry[indexChap].value;
                             if (state is TaskStateLoaded) {
@@ -206,80 +210,103 @@ class _AddTaskState extends State<AddTask> {
         TextButton(
           onPressed: () {
             setState(() {
-              colorTab = Colors.cyan;
+              colorTab = kYellowLight;
             });
-            newDesk.bgColor = Colors.cyan;
+            newDesk.bgColor = kYellowLight;
+            newDesk.tlColor = kYellowDark;
           },
           child: Container(
-            height: 25,
-            width: 25,
+            height: 33,
+            width: 33,
             decoration: BoxDecoration(
-                color: Colors.cyan, borderRadius: BorderRadius.circular(50)),
+                color: kYellowDark,
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(
+                  color: Colors.black,
+                  width: 1.5,
+                )),
           ),
         ),
         TextButton(
           onPressed: () {
             setState(() {
-              colorTab = Colors.blue;
+              colorTab = kRedLight;
             });
-            newDesk.bgColor = Colors.blue;
+            newDesk.bgColor = kRedLight;
+            newDesk.tlColor = kRedDark;
           },
           child: Container(
-            height: 25,
-            width: 25,
+            height: 33,
+            width: 33,
             decoration: BoxDecoration(
-                color: Colors.blue, borderRadius: BorderRadius.circular(50)),
+                color: kRedDark,
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(
+                  color: Colors.black,
+                  width: 1.3,
+                )),
           ),
         ),
         TextButton(
           onPressed: () {
             setState(() {
-              colorTab = Colors.pinkAccent;
+              colorTab = kBlueLight;
             });
-            newDesk.bgColor = Colors.pinkAccent;
+            newDesk.bgColor = kBlueLight;
+            newDesk.tlColor = kBlueDark;
           },
           child: Container(
-            height: 25,
-            width: 25,
+            height: 33,
+            width: 33,
             decoration: BoxDecoration(
-                color: Colors.pinkAccent,
-                borderRadius: BorderRadius.circular(50)),
+                color: kBlueDark,
+                borderRadius: BorderRadius.circular(50),
+                border: Border.all(
+                  color: Colors.black,
+                  width: 1.3,
+                )),
           ),
         ),
-        TextButton(
-          onPressed: () {
-            setState(() {
-              colorTab = Colors.green;
-            });
-            newDesk.bgColor = Colors.green;
-          },
-          child: Container(
-            height: 25,
-            width: 25,
-            decoration: BoxDecoration(
-                color: Colors.green, borderRadius: BorderRadius.circular(50)),
-          ),
-        ),
+        // TextButton(
+        //   onPressed: () {
+        //     setState(() {
+        //       colorTab = Colors.green.shade100;
+        //     });
+        //     newDesk.bgColor = Colors.green.shade100;
+        //     newDesk.tlColor = Colors.green;
+        //   },
+        //   child: Container(
+        //     height: 33,
+        //     width: 33,
+        //     decoration: BoxDecoration(
+        //         color: Colors.green.shade100,
+        //         borderRadius: BorderRadius.circular(50),
+        //         border: Border.all(
+        //           color: Colors.black,
+        //           width: 1.3,
+        //         )),
+        //   ),
+        // ),
       ],
     );
   }
 
   AnimatedContainer _buildPresentationContainer(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 500),
       margin: const EdgeInsets.all(8),
       height: 160,
       decoration: BoxDecoration(
         color: colorTab,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: colorTab.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 12,
-            offset: const Offset(3, 3),
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: colorTab.withOpacity(0.5),
+        //     spreadRadius: 2,
+        //     blurRadius: 12,
+        //     offset: const Offset(3, 3),
+        //   ),
+        // ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -309,12 +336,12 @@ class _AddTaskState extends State<AddTask> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 20),
-              const Column(
+              Column(
                 children: [
                   Text(
                     'Mon',
                     style: TextStyle(
-                      color: Colors.white60,
+                      color: Colors.grey.shade800,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -322,7 +349,7 @@ class _AddTaskState extends State<AddTask> {
                   Text(
                     '24',
                     style: TextStyle(
-                      color: Colors.white60,
+                      color: Colors.grey.shade800,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -337,17 +364,17 @@ class _AddTaskState extends State<AddTask> {
                 },
                 child: Text(
                   time1.format(context),
-                  style: const TextStyle(
-                    color: Colors.white60,
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
                     fontSize: 19,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const Text(
+              Text(
                 '-',
                 style: TextStyle(
-                  color: Colors.white60,
+                  color: Colors.grey.shade700,
                   fontSize: 19,
                   fontWeight: FontWeight.bold,
                 ),
@@ -359,8 +386,8 @@ class _AddTaskState extends State<AddTask> {
                 },
                 child: Text(
                   time2.format(context),
-                  style: const TextStyle(
-                    color: Colors.white60,
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
                     fontSize: 19,
                     fontWeight: FontWeight.bold,
                   ),
