@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/constants/colors.dart';
 
+import '../screens/task/add_task.dart';
+
 class Task {
   IconData? iconData;
   String? title;
@@ -34,7 +36,7 @@ class Task {
           done: 1,
           desc: [
             Desk(
-              time: '9:00',
+              // time: '9:00',
               newTime: const TimeOfDay(hour: 4, minute: 0),
               title: 'Go for a walk with dog',
               slot: '9:00 - 10:00',
@@ -42,7 +44,7 @@ class Task {
               bgColor: kRedLight,
             ),
             Desk(
-              time: '10:00',
+              // time: '10:00',
               newTime: const TimeOfDay(hour: 10, minute: 0),
               title: 'Shot on Dribble',
               slot: '9:00 - 10:00',
@@ -60,7 +62,7 @@ class Task {
             //   newTime: const TimeOfDay(hour: 2, minute: 0),
             // ),
             Desk(
-              time: '13:00',
+              // time: '13:00',
               newTime: const TimeOfDay(hour: 13, minute: 0),
               title: 'Call with client',
               slot: '13:00 - 14:00',
@@ -100,16 +102,16 @@ class Task {
 }
 
 class Desk {
-  String time;
+  // String time;
   TimeOfDay? newTime;
   String title;
   String? slot;
   Color? bgColor;
   Color? tlColor;
-  String? chap;
+  Chapter? chap;
 
   Desk({
-    required this.time,
+    // required this.time,
     this.tlColor,
     this.bgColor,
     required this.title,

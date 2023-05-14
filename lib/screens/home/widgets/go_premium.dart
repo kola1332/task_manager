@@ -11,13 +11,12 @@ class GoPremium extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: Colors.black,
-
-              // image: const DecorationImage(
-              //   image: NetworkImage(
-              //       'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
-              // fit: BoxFit.cover
-              // ),
-
+              image: const DecorationImage(
+                  image: ExactAssetImage('assets/space.jpg'),
+                  
+                  // NetworkImage(
+                  //     'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
+                  fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(

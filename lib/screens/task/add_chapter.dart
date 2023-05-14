@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import '../../models/task.dart';
 import '../home/home.dart';
 
-class AddChapster extends StatefulWidget {
+class AddChapter extends StatefulWidget {
   TextEditingController controller = TextEditingController();
   List<Task> tasksList;
-  AddChapster(this.tasksList);
+  AddChapter(this.tasksList);
 
   @override
-  State<AddChapster> createState() => _AddChapsterState();
+  State<AddChapter> createState() => _AddChapterState();
 }
 
-class _AddChapsterState extends State<AddChapster> {
+class _AddChapterState extends State<AddChapter> {
   String data = 'Имя вашей задачи';
   List<String> sections = ['Personal', 'Work', 'Health'];
   Color colorTab = const Color.fromARGB(255, 182, 255, 185);
@@ -65,14 +65,20 @@ class _AddChapsterState extends State<AddChapster> {
     }
 
     return Scaffold(
-      body: Container(decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage(
-                'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
-          fit: BoxFit.cover
-          ),
-        ),
-        child: SafeArea(
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      // ),
+      // body: Container(decoration: const BoxDecoration(
+      //     // image: DecorationImage(
+      //     //   image: 
+      //     //   ExactAssetImage('assets/space.jpg'),
+      //     //   // NetworkImage(
+      //     //   //     'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
+      //     // fit: BoxFit.cover
+      //     // ),
+      //   ),
+        // child:
+         body: SafeArea(
           child: Column(
             children: [
               Container(
@@ -317,8 +323,8 @@ class _AddChapsterState extends State<AddChapster> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    // );
   }
 }
 

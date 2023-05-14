@@ -10,6 +10,8 @@ class TaskTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    desk.slot ??=
+        '''${desk.newTime!.hour < 10 ? '0${desk.newTime!.hour}' : desk.newTime!.hour}:${desk.newTime!.minute < 10 ? '0${desk.newTime!.minute}' : desk.newTime!.minute} - ${(desk.newTime!.hour + 1) < 10 ? '0${desk.newTime!.hour + 1}' : desk.newTime!.hour}:${desk.newTime!.minute < 10 ? '0${desk.newTime!.minute}' : desk.newTime!.minute}''';
     return Container(
         color: Colors.white,
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -29,7 +31,7 @@ class TaskTimeline extends StatelessWidget {
                 ),
                 desk.title != null
                     ? _buildCart(
-                        desk.bgColor ??= Colors.white,
+                        desk.bgColor ??= Colors.grey.shade300,
                         desk.title,
                         desk.slot ??= '',
                       )

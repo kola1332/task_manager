@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/widgets/task_title.dart';
 import 'package:task_manager/screens/detail/widgets/timeline/timeline_logic.dart';
+import 'package:task_manager/screens/home/home.dart';
 
 import '../task/add_task.dart';
 import 'widgets/date_picker.dart';
@@ -11,9 +12,8 @@ import 'widgets/timeline/task_timeline.dart';
 
 class Detailpage extends StatelessWidget {
   final Task task;
-  List<Task> tasksList;
   int i = 0;
-  Detailpage(this.task, this.tasksList);
+  Detailpage(this.task);
 
   @override
   Widget build(BuildContext context) {
@@ -21,24 +21,20 @@ class Detailpage extends StatelessWidget {
     if (task.desc != null) {
       TimelineEngine timelineEngine = TimelineEngine(task.desc!);
       detailList = timelineEngine.sort();
-      print('#');
-      for (var a in detailList) {
-        print(a.newTime);
-      }
     }
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
           // side: BorderSide(
-          //   // color: Colors.black,
+          // color: Colors.black,
           // ),
           borderRadius: BorderRadius.circular(10),
         ),
-        backgroundColor: Colors.green.shade300,
+        backgroundColor: task.btnColor,
         elevation: 0,
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => AddTask()));
+              .push(MaterialPageRoute(builder: (context) => AddTask(task)));
         },
         child: const Icon(
           Icons.add,
@@ -101,16 +97,14 @@ class Detailpage extends StatelessWidget {
       backgroundColor: Colors.black,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => HomePage())),
         iconSize: 20,
       ),
       actions: [
         IconButton(
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AddTask()));
-          },
-          icon: const Icon(Icons.add),
+          onPressed: () {},
+          icon: const Icon(Icons.more_vert),
           iconSize: 30,
         ),
       ],

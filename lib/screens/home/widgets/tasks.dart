@@ -6,7 +6,7 @@ import 'package:task_manager/bloc/task_state.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/detail.dart';
 
-import '../../task/add__chapster.dart';
+import '../../task/add_chapter.dart';
 
 class Tasks extends StatelessWidget {
   late final List<Task> tasksList;
@@ -41,28 +41,38 @@ class Tasks extends StatelessWidget {
       color: Colors.grey,
       strokeWidth: 2,
       child: Center(
-        child: TextButton(
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-                    // Cart
-                    // AddTask
-                    AddChapster(tasksList)));
-          },
-          child: const Text(
-            '+ Add',
-            style: TextStyle(color: Colors.black, fontSize: 20),
+        child:
+        //  TextButton(
+        //   onPressed: () {
+        //     // Navigator.of(context).push(MaterialPageRoute(
+        //     //     builder: (context) =>
+        //     //         // Cart
+        //     //         // AddTask
+        //     //         AddChapter(tasksList)));
+        //   },
+        //   child: 
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '+ Add',
+                style: TextStyle(color: Colors.black, fontSize: 20),
+              ),
+               Text(
+                'not work yet',
+                style: TextStyle(color: Colors.red.shade600, fontSize: 14),
+              ),
+            ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   Widget _buildTask(BuildContext context, Task task) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => Detailpage(task, tasksList)));
+            builder: (context) => Detailpage(task)));
       },
       child: Container(
         padding: const EdgeInsets.all(15),

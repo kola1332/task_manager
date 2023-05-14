@@ -16,12 +16,12 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
-    final List<DropdownMenuEntry<Chapsters>> tasks =
-        <DropdownMenuEntry<Chapsters>>[];
+    final List<DropdownMenuEntry<Chapter>> tasks =
+        <DropdownMenuEntry<Chapter>>[];
     for (final Task color in widget.tasksList) {
       if (color.title != null) {
-        tasks.add(DropdownMenuEntry<Chapsters>(
-          value: Chapsters(color.title!),
+        tasks.add(DropdownMenuEntry<Chapter>(
+          value: Chapter(color.title!),
           label: color.title!,
         ));
       }
