@@ -22,11 +22,6 @@ class DBProvider {
   }
 
   void onCreate(Database db, int version) async {
-    // await db.execute('''
-    // CREATE TABLE IF NOT EXISTS taskTable (
-    //   tasks INT)
-    // ''');
-
     await db.execute('''
     CREATE TABLE IF NOT EXISTS deskTable (
       newTime TEXT,
@@ -37,7 +32,7 @@ class DBProvider {
       chap TEXT)
     ''');
 
-        await db.execute('''
+    await db.execute('''
     CREATE TABLE IF NOT EXISTS taskTable (
       iconData INT,
       title TEXT,
@@ -49,30 +44,4 @@ class DBProvider {
       isLast INT NOT NULL)
     ''');
   }
-
-  // void addTask(Database db, int i) async {
-  //   await db.execute('''
-  //   CREATE TABLE IF NOT EXISTS taskTable$i (
-  //     id TEXT,
-  //     iconData INT,
-  //     title TEXT,
-  //     bgColor TEXT,
-  //     iconColor TEXT,
-  //     btnColor TEXT,
-  //     left INT,
-  //     done INT,
-  //     isLast INT NOT NULL)
-  //   ''');
-
-  //   await db.execute('''
-  //   CREATE TABLE IF NOT EXISTS deskTable$i (
-  //     id TEXT,
-  //     newTime TEXT,
-  //     title TEXT,
-  //     slot TEXT,
-  //     bgColor TEXT,
-  //     tlColor TEXT,
-  //     chap TEXT)
-  //   ''');
-  // }
 }

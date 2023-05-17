@@ -22,10 +22,6 @@ class Tasks extends StatelessWidget {
           itemBuilder: (context, index) => index == tasksList.length
               ? _buildAddTask(context)
               : _buildTask(context, tasksList[index])
-
-          // tasksList[index].isLast
-          // ?
-          // : _buildTask(context, tasksList[index])
           ),
     );
   }
@@ -40,15 +36,6 @@ Widget _buildAddTask(context) {
     strokeWidth: 2,
     child: Center(
       child:
-          //  TextButton(
-          //   onPressed: () {
-          //     // Navigator.of(context).push(MaterialPageRoute(
-          //     //     builder: (context) =>
-          //     //         // Cart
-          //     //         // AddTask
-          //     //         AddChapter(tasksList)));
-          //   },
-          //   child:
           Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -12,9 +12,6 @@ class GoPremium extends StatelessWidget {
             color: Colors.black,
             image: const DecorationImage(
                 image: ExactAssetImage('assets/space.jpg'),
-                
-                // NetworkImage(
-                //     'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
                 fit: BoxFit.cover),
             borderRadius: BorderRadius.circular(20),
           ),

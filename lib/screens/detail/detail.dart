@@ -25,9 +25,6 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
-          // side: BorderSide(
-          // color: Colors.black,
-          // ),
           borderRadius: BorderRadius.circular(10),
         ),
         backgroundColor: task.btnColor,
@@ -42,7 +39,6 @@ class DetailPage extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      // backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           _buildAppBar(context),

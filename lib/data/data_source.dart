@@ -46,38 +46,12 @@ class TaskLocalDataSourceImpl implements TaskLocalDataSource {
   Future<List<TaskModel>> getSql() async {
     var dbTask = await db.database;
     List<TaskModel> taskList = [];
-    // List<Desk> deskList = [];
-    // List<Desk> newDeskList = [];
     Map<String, List<Desk>> deskMap = {};
-    String? title;
     final List<Map<String, dynamic>> listTask = await dbTask.query('taskTable');
     final List<Map<String, dynamic>> listDesk = await dbTask.query('deskTable');
     for (var deskItem in listDesk) {
       var time = deskItem['newTime'] as String;
       time = time.split("(")[1].split(")")[0];
-      // if (deskItem['title'] != 'null'
-      //     && deskMap.entries.contains(deskItem['title'])
-      //     ) {
-      title ??= deskItem['chap'];
-      // if (title != deskItem['chap']) {
-      //   deskList = [];
-      // }
-      // deskList.add(Desk(
-      //   newTime: TimeOfDay(
-      //       hour: int.parse(time.split(":")[0]),
-      //       minute: int.parse(time.split(":")[1])),
-      //   title: deskItem['title'],
-      //   slot: deskItem['slot'],
-      //   bgColor: hexToColor(deskItem['bgColor']),
-      //   tlColor: hexToColor(deskItem['tlColor']),
-      //   chap: deskItem['chap'],
-      // ));
-      // if (deskMap.containsKey(deskItem['chap'])) {
-      // for (int i = 0; i < deskList.length;i++) {
-      // deskMap[deskItem['chap']]!.addAll(deskList);
-      // }
-      // } else {
-      // deskMap.addAll({deskItem['chap']: deskList});
       deskMap[deskItem['chap']] ??= [];
       deskMap[deskItem['chap']]!.add(Desk(
         newTime: TimeOfDay(
@@ -95,7 +69,6 @@ class TaskLocalDataSourceImpl implements TaskLocalDataSource {
       print(deskItem['chap']); // ? del
     }
     for (var taskItem in listTask) {
-      // for (int i = 0; i < listTask.length; i++) {
       taskList.add(TaskModel(
         desc: deskMap[taskItem['title']],
         iconData: taskItem['iconData'] != 0

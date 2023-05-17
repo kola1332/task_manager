@@ -2,7 +2,6 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/bloc/task_state.dart';
-// import 'package:task_manager/data/data_source.dart';
 
 import '../core/error/failure.dart';
 import '../data/rep.dart';
@@ -18,7 +17,6 @@ class TaskCubit extends Cubit<TaskState> {
 
   void getTasks() async {
     if (state is TaskStateLoading) return;
-    // final currentState = state;
     List<TaskModel> taskList = [];
     emit(TaskStateLoading());
     final failureOrTask = await repository.getTasks();
