@@ -10,10 +10,10 @@ import '../task/add_task.dart';
 import 'widgets/date_picker.dart';
 import 'widgets/timeline/task_timeline.dart';
 
-class Detailpage extends StatelessWidget {
-  final Task task;
+class DetailPage extends StatelessWidget {
+  final TaskModel task;
   int i = 0;
-  Detailpage(this.task);
+  DetailPage(this.task);
 
   @override
   Widget build(BuildContext context) {

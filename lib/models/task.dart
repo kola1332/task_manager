@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/constants/colors.dart';
 
-import '../screens/task/add_task.dart';
-
-class Task {
+class TaskModel {
   IconData? iconData;
   String? title;
   Color? bgColor;
@@ -13,7 +11,7 @@ class Task {
   int? done;
   List<Desk>? desc;
   bool isLast;
-  Task(
+  TaskModel(
       {this.iconData,
       this.title,
       this.bgColor,
@@ -24,9 +22,9 @@ class Task {
       this.desc,
       this.isLast = false});
 
-  static List<Task> generateTasks() {
+  static List<TaskModel> generateTasks() {
     return [
-      Task(
+      TaskModel(
           iconData: Icons.person_rounded,
           title: 'Personal',
           bgColor: kYellowLight,
@@ -42,6 +40,7 @@ class Task {
               slot: '9:00 - 10:00',
               tlColor: kRedDark,
               bgColor: kRedLight,
+              chap: 'Personal',
             ),
             Desk(
               // time: '10:00',
@@ -50,6 +49,7 @@ class Task {
               slot: '9:00 - 10:00',
               tlColor: kBlueDark,
               bgColor: kBlueLight,
+              chap: 'Personal',
             ),
             // Desk(
             //   time: '11:00',
@@ -68,6 +68,7 @@ class Task {
               slot: '13:00 - 14:00',
               tlColor: kYellowDark,
               bgColor: kYellowLight,
+              chap: 'Personal',
             ),
             // Desk(
             //   time: '14:00',
@@ -78,7 +79,7 @@ class Task {
             //   newTime: const TimeOfDay(hour: 15, minute: 0),
             // ),
           ]),
-      Task(
+      TaskModel(
         iconData: Icons.cases_rounded,
         title: 'Work',
         bgColor: kRedLight,
@@ -87,7 +88,7 @@ class Task {
         left: 0,
         done: 0,
       ),
-      Task(
+      TaskModel(
         iconData: Icons.favorite_rounded,
         title: 'Health',
         bgColor: kBlueLight,
@@ -95,8 +96,19 @@ class Task {
         btnColor: kBlue,
         left: 0,
         done: 0,
+        desc: [
+          Desk(
+            // time: '13:00',
+            newTime: const TimeOfDay(hour: 13, minute: 0),
+            title: 'Call with client',
+            slot: '13:00 - 14:00',
+            tlColor: kYellowDark,
+            bgColor: kYellowLight,
+            chap: 'Health',
+          )
+        ],
       ),
-      Task(isLast: true),
+      // TaskModel(isLast: true),
     ];
   }
 }
@@ -108,7 +120,7 @@ class Desk {
   String? slot;
   Color? bgColor;
   Color? tlColor;
-  Chapter? chap;
+  String? chap;
 
   Desk({
     // required this.time,

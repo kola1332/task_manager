@@ -7,12 +7,20 @@ class TaskStateEmpty extends TaskState {}
 class TaskStateLoading extends TaskState {}
 
 class TaskStateLoaded extends TaskState {
-  final List<Task> tasks;
-  // List<Map> desks = [];
-  // Map newDesk = {};
+  final List<TaskModel> tasks;
   Desk? newDesk;
 
   TaskStateLoaded(this.tasks);
 }
 
-class TaskStateError extends TaskState {}
+class TaskStateUpdate extends TaskState {
+  final List<TaskModel> tasks;
+
+  TaskStateUpdate(this.tasks);
+}
+
+class TaskStateError extends TaskState {
+  final String message;
+
+  TaskStateError(this.message);
+}

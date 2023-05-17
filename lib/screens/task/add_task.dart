@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_manager/data/data_source.dart';
+import 'package:task_manager/data/rep.dart';
 import 'package:task_manager/screens/detail/detail.dart';
 
 import '../../bloc/task_cubit.dart';
@@ -13,7 +15,7 @@ import '../detail/widgets/date_picker.dart';
 
 class AddTask extends StatefulWidget {
   TextEditingController controller = TextEditingController();
-  final Task task;
+  final TaskModel task;
 
   AddTask(this.task);
 
@@ -68,8 +70,9 @@ class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
-      late List<Task> tasksList;
-
+      late List<TaskModel> tasksList;
+      TaskLocalDataSourceImpl taskLocalDataSourceImpl =
+          TaskLocalDataSourceImpl();
       if (state is TaskStateLoading) {
         return const Center(
           child: CircularProgressIndicator(),
@@ -146,7 +149,7 @@ class _AddTaskState extends State<AddTask> {
                               initialSelection: tasksEntry[indexChap].value,
                               onSelected: (value) {
                                 // ! CHAPTER
-                                newDesk.chap = value!;
+                                newDesk.chap = value!.label;
                               }),
                         ],
                       ),
@@ -163,7 +166,7 @@ class _AddTaskState extends State<AddTask> {
                           const errorTime = SnackBar(
                             content: Text('Введите время'),
                           );
-                          Task task = Task();
+                          TaskModel task = TaskModel();
                           if (newDesk.title == '') {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(errorTitle);
@@ -174,18 +177,21 @@ class _AddTaskState extends State<AddTask> {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(errorTime);
                           } else {
-                            newDesk.chap ??= tasksEntry[indexChap].value;
+                            newDesk.chap ??= tasksEntry[indexChap].value.label;
                             if (state is TaskStateLoaded) {
                               for (var taskChap in state.tasks) {
-                                if (taskChap.title == newDesk.chap!.label) {
+                                if (taskChap.title == newDesk.chap!) {
                                   taskChap.desc ??= [];
                                   taskChap.desc!.add(newDesk);
                                   task = taskChap;
                                 }
                               }
+                              print(newDesk.title);
+                              taskLocalDataSourceImpl.deskToSql(newDesk);
                             }
+
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Detailpage(task)));
+                                builder: (context) => DetailPage(task)));
                             // Navigator.pop(context);
                           }
                         },
@@ -201,8 +207,8 @@ class _AddTaskState extends State<AddTask> {
     });
   }
 
-  Container _buildColor() {
-    return Container(
+  SizedBox _buildColor() {
+    return SizedBox(
       height: 60,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -221,7 +227,7 @@ class _AddTaskState extends State<AddTask> {
               newDesk.tlColor = kYellowDark;
             },
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 400),
               height: wh == 0 ? 45 : 33,
               width: wh == 0 ? 45 : 33,
               decoration: BoxDecoration(
@@ -243,7 +249,7 @@ class _AddTaskState extends State<AddTask> {
               newDesk.tlColor = kRedDark;
             },
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 400),
               height: wh == 1 ? 45 : 33,
               width: wh == 1 ? 45 : 33,
               decoration: BoxDecoration(
@@ -265,7 +271,7 @@ class _AddTaskState extends State<AddTask> {
               newDesk.tlColor = kBlueDark;
             },
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 400),
               height: wh == 2 ? 45 : 33,
               width: wh == 2 ? 45 : 33,
               decoration: BoxDecoration(

@@ -6,7 +6,7 @@ import '/screens/task/add_task.dart';
 
 class Cart extends StatefulWidget {
   TextEditingController controller = TextEditingController();
-  List<Task> tasksList;
+  List<TaskModel> tasksList;
   Cart(this.tasksList);
 
   @override
@@ -18,7 +18,7 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     final List<DropdownMenuEntry<Chapter>> tasks =
         <DropdownMenuEntry<Chapter>>[];
-    for (final Task color in widget.tasksList) {
+    for (final TaskModel color in widget.tasksList) {
       if (color.title != null) {
         tasks.add(DropdownMenuEntry<Chapter>(
           value: Chapter(color.title!),
