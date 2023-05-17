@@ -6,7 +6,7 @@ import '../home/home.dart';
 
 class AddChapter extends StatefulWidget {
   TextEditingController controller = TextEditingController();
-  List<Task> tasksList;
+  List<TaskModel> tasksList;
   AddChapter(this.tasksList);
 
   @override
@@ -55,7 +55,7 @@ class _AddChapterState extends State<AddChapter> {
     Map<String, dynamic> newDesk = {};
     final List<DropdownMenuEntry<Chapsters>> tasks =
         <DropdownMenuEntry<Chapsters>>[];
-    for (final Task color in widget.tasksList) {
+    for (final TaskModel color in widget.tasksList) {
       if (color.title != null) {
         tasks.add(DropdownMenuEntry<Chapsters>(
           value: Chapsters(color.title!),

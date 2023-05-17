@@ -11,7 +11,7 @@ import 'widgets/date_picker.dart';
 import 'widgets/timeline/task_timeline.dart';
 
 class DetailPage extends StatelessWidget {
-  final Task task;
+  final TaskModel task;
   int i = 0;
   DetailPage(this.task);
 
