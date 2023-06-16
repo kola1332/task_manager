@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/constants/colors.dart';
 
-class Task {
+class TaskModel {
   IconData? iconData;
   String? title;
   Color? bgColor;
@@ -9,9 +9,9 @@ class Task {
   Color? btnColor;
   int? left;
   int? done;
-  List<Map<String, dynamic>>? desc;
+  List<Desk>? desc;
   bool isLast;
-  Task(
+  TaskModel(
       {this.iconData,
       this.title,
       this.bgColor,
@@ -21,10 +21,10 @@ class Task {
       this.done,
       this.desc,
       this.isLast = false});
-      
-  static List<Task> generateTasks() {
+
+  static List<TaskModel> generateTasks() {
     return [
-      Task(
+      TaskModel(
           iconData: Icons.person_rounded,
           title: 'Personal',
           bgColor: kYellowLight,
@@ -33,54 +33,32 @@ class Task {
           left: 3,
           done: 1,
           desc: [
-            {
-              'time': '9:00',
-              'title': 'Go for a walk with dog',
-              'slot': '9:00 - 10:00',
-              'tlColor': kRedDark,
-              'bgColor': kRedLight,
-            },
-            {
-              'time': '10:00',
-              'title': 'Shot on Dribble',
-              'slot': '10:00 - 12:00',
-              'tlColor': kBlueDark,
-              'bgColor': kBlueLight,
-            },
-            {
-              'time': '11:00',
-              'title': '',
-              'slot': '',
-              'tlColor': kBlueDark,
-              'bgColor': kBlueLight,
-            },
-            {
-              'time': '12:00',
-              'title': '',
-              'slot': '',
-              'tlColor': Colors.grey.withOpacity(0.3),
-            },
-            {
-              'time': '13:00',
-              'title': 'Call with client',
-              'slot': '13:00 - 14:00',
-              'tlColor': kYellowDark,
-              'bgColor': kYellowLight,
-            },
-            {
-              'time': '14:00',
-              'title': '',
-              'slot': '',
-              'tlColor': Colors.grey.withOpacity(0.3),
-            },
-            {
-              'time': '15:00',
-              'title': '',
-              'slot': '',
-              'tlColor': Colors.grey.withOpacity(0.3),
-            },
+            Desk(
+              newTime: const TimeOfDay(hour: 4, minute: 0),
+              title: 'Go for a walk with dog',
+              slot: '9:00 - 10:00',
+              tlColor: kRedDark,
+              bgColor: kRedLight,
+              chap: 'Personal',
+            ),
+            Desk(
+              newTime: const TimeOfDay(hour: 10, minute: 0),
+              title: 'Shot on Dribble',
+              slot: '9:00 - 10:00',
+              tlColor: kBlueDark,
+              bgColor: kBlueLight,
+              chap: 'Personal',
+            ),
+            Desk(
+              newTime: const TimeOfDay(hour: 13, minute: 0),
+              title: 'Call with client',
+              slot: '13:00 - 14:00',
+              tlColor: kYellowDark,
+              bgColor: kYellowLight,
+              chap: 'Personal',
+            ),
           ]),
-      Task(
+      TaskModel(
         iconData: Icons.cases_rounded,
         title: 'Work',
         bgColor: kRedLight,
@@ -89,7 +67,7 @@ class Task {
         left: 0,
         done: 0,
       ),
-      Task(
+      TaskModel(
         iconData: Icons.favorite_rounded,
         title: 'Health',
         bgColor: kBlueLight,
@@ -97,8 +75,35 @@ class Task {
         btnColor: kBlue,
         left: 0,
         done: 0,
+        desc: [
+          Desk(
+            newTime: const TimeOfDay(hour: 13, minute: 0),
+            title: 'Call with client',
+            slot: '13:00 - 14:00',
+            tlColor: kYellowDark,
+            bgColor: kYellowLight,
+            chap: 'Health',
+          )
+        ],
       ),
-      Task(isLast: true),
     ];
   }
+}
+
+class Desk {
+  TimeOfDay? newTime;
+  String title;
+  String? slot;
+  Color? bgColor;
+  Color? tlColor;
+  String? chap;
+
+  Desk({
+    this.tlColor,
+    this.bgColor,
+    required this.title,
+    this.slot,
+    this.chap,
+    this.newTime,
+  });
 }

@@ -1,19 +1,44 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/widgets/task_title.dart';
+import 'package:task_manager/screens/detail/widgets/timeline/timeline_logic.dart';
+import 'package:task_manager/screens/home/home.dart';
 
+import '../task/add_task.dart';
 import 'widgets/date_picker.dart';
-import 'widgets/task_timeline.dart';
+import 'widgets/timeline/task_timeline.dart';
 
-class Detailpage extends StatelessWidget {
-  final Task task;
-  const Detailpage(this.task);
+class DetailPage extends StatelessWidget {
+  final TaskModel task;
+  int index = 0;
+  DetailPage(this.task);
 
   @override
   Widget build(BuildContext context) {
-    final detailList = task.desc;
+    List<Desk>? detailList;
+    if (task.desc != null) {
+      TimelineEngine timelineEngine = TimelineEngine(task.desc!);
+      detailList = timelineEngine.sort();
+    }
     return Scaffold(
-      backgroundColor: Colors.black,
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        backgroundColor: task.btnColor,
+        elevation: 0,
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddTask(task)));
+        },
+        child: const Icon(
+          Icons.add,
+          size: 35,
+          color: Colors.black,
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           _buildAppBar(context),
@@ -45,8 +70,15 @@ class Detailpage extends StatelessWidget {
                   ),
                 )
               : SliverList(
+                  // ! need change
                   delegate: SliverChildBuilderDelegate(
-                    (_, index) => TaskTimeline(detail: detailList[index]),
+                    (_, index) {
+                      index++;
+                      return TaskTimeline(
+                        desk: detailList![index],
+                        isLast: detailList.length == index ? false : true,
+                      );
+                    },
                     childCount: detailList.length,
                   ),
                 ),
@@ -61,13 +93,15 @@ class Detailpage extends StatelessWidget {
       backgroundColor: Colors.black,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios),
-        onPressed: () => Navigator.of(context).pop(),
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => HomePage())),
         iconSize: 20,
       ),
-      actions: const [
-        Icon(
-          Icons.more_vert,
-          size: 40,
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.more_vert),
+          iconSize: 30,
         ),
       ],
       flexibleSpace: FlexibleSpaceBar(
