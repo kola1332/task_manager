@@ -12,7 +12,7 @@ import 'widgets/timeline/task_timeline.dart';
 
 class DetailPage extends StatelessWidget {
   final TaskModel task;
-  int i = 0;
+  int index = 0;
   DetailPage(this.task);
 
   @override
@@ -73,10 +73,10 @@ class DetailPage extends StatelessWidget {
                   // ! need change
                   delegate: SliverChildBuilderDelegate(
                     (_, index) {
-                      i++;
+                      index++;
                       return TaskTimeline(
                         desk: detailList![index],
-                        isLast: detailList.length == i ? false : true,
+                        isLast: detailList.length == index ? false : true,
                       );
                     },
                     childCount: detailList.length,

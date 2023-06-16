@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/screens/home/home.dart';
-import 'bloc/task_cubit.dart';
+import 'cubit/task_cubit.dart';
 import 'locator_service.dart' as di;
 import 'locator_service.dart';
 

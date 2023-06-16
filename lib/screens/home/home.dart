@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/screens/home/widgets/go_premium.dart';
 import 'package:task_manager/screens/home/widgets/tasks.dart';
-import '../../bloc/task_cubit.dart';
-import '../../bloc/task_state.dart';
+import '../../cubit/task_cubit.dart';
+import '../../cubit/task_state.dart';
 import '../../models/task.dart';
 
 class HomePage extends StatelessWidget {
-  List<TaskModel>? tasksList;
+  // List<TaskModel>? tasksList;
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ class Repository {
     List<TaskModel> taskList;
     try {
       taskList = await taskLocalDataSource.getSql();
-      if (taskList == [] || taskList.isEmpty) {
+      if (taskList.isEmpty) {
         throw Exception();
       } else {
         return Right(taskList);

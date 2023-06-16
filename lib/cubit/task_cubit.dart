@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:task_manager/bloc/task_state.dart';
+import 'package:task_manager/cubit/task_state.dart';
 
 import '../core/error/failure.dart';
 import '../data/rep.dart';

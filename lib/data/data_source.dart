@@ -63,9 +63,7 @@ class TaskLocalDataSourceImpl implements TaskLocalDataSource {
         tlColor: hexToColor(deskItem['tlColor']),
         chap: deskItem['chap'],
       ));
-
-      // }
-      // }
+      
       print(deskItem['chap']); // ? del
     }
     for (var taskItem in listTask) {

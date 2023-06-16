@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/data/data_source.dart';
 import 'package:task_manager/screens/detail/detail.dart';
 
-import '../../bloc/task_cubit.dart';
-import '../../bloc/task_state.dart';
+import '../../cubit/task_cubit.dart';
+import '../../cubit/task_state.dart';
 import '../../constants/colors.dart';
 import '../../models/task.dart';
 import '../detail/widgets/date_picker.dart';
@@ -28,7 +28,7 @@ class _AddTaskState extends State<AddTask> {
   late Desk newDesk;
   String data = 'Имя вашей задачи';
   Color colorTab = Colors.grey.shade300;
-  late double wh;
+  late double colorSize;
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
@@ -61,7 +61,7 @@ class _AddTaskState extends State<AddTask> {
     time1 = const TimeOfDay(hour: 0, minute: 0);
     time2 = const TimeOfDay(hour: 0, minute: 0);
     newDesk = Desk(title: '');
-    wh = 0;
+    colorSize = 0;
     super.initState();
   }
 
@@ -193,7 +193,7 @@ class _AddTaskState extends State<AddTask> {
           TextButton(
             onPressed: () {
               setState(() {
-                wh = 0;
+                colorSize = 0;
                 colorTab = kYellowLight;
               });
               newDesk.bgColor = kYellowLight;
@@ -201,8 +201,8 @@ class _AddTaskState extends State<AddTask> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 400),
-              height: wh == 0 ? 45 : 33,
-              width: wh == 0 ? 45 : 33,
+              height: colorSize == 0 ? 45 : 33,
+              width: colorSize == 0 ? 45 : 33,
               decoration: BoxDecoration(
                   color: kYellowDark,
                   borderRadius: BorderRadius.circular(50),
@@ -215,7 +215,7 @@ class _AddTaskState extends State<AddTask> {
           TextButton(
             onPressed: () {
               setState(() {
-                wh = 1;
+                colorSize = 1;
                 colorTab = kRedLight;
               });
               newDesk.bgColor = kRedLight;
@@ -223,8 +223,8 @@ class _AddTaskState extends State<AddTask> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 400),
-              height: wh == 1 ? 45 : 33,
-              width: wh == 1 ? 45 : 33,
+              height: colorSize == 1 ? 45 : 33,
+              width: colorSize == 1 ? 45 : 33,
               decoration: BoxDecoration(
                   color: kRedDark,
                   borderRadius: BorderRadius.circular(50),
@@ -237,7 +237,7 @@ class _AddTaskState extends State<AddTask> {
           TextButton(
             onPressed: () {
               setState(() {
-                wh = 2;
+                colorSize = 2;
                 colorTab = kBlueLight;
               });
               newDesk.bgColor = kBlueLight;
@@ -245,8 +245,8 @@ class _AddTaskState extends State<AddTask> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 400),
-              height: wh == 2 ? 45 : 33,
-              width: wh == 2 ? 45 : 33,
+              height: colorSize == 2 ? 45 : 33,
+              width: colorSize == 2 ? 45 : 33,
               decoration: BoxDecoration(
                   color: kBlueDark,
                   borderRadius: BorderRadius.circular(50),
