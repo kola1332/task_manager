@@ -12,7 +12,7 @@ import 'widgets/timeline/task_timeline.dart';
 
 class DetailPage extends StatelessWidget {
   final TaskModel task;
-  int i = 0;
+  int index = 0;
   DetailPage(this.task);
 
   @override
@@ -25,9 +25,6 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
-          // side: BorderSide(
-          // color: Colors.black,
-          // ),
           borderRadius: BorderRadius.circular(10),
         ),
         backgroundColor: task.btnColor,
@@ -42,7 +39,6 @@ class DetailPage extends StatelessWidget {
           color: Colors.black,
         ),
       ),
-      // backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           _buildAppBar(context),
@@ -77,10 +73,10 @@ class DetailPage extends StatelessWidget {
                   // ! need change
                   delegate: SliverChildBuilderDelegate(
                     (_, index) {
-                      i++;
+                      index++;
                       return TaskTimeline(
                         desk: detailList![index],
-                        isLast: detailList.length == i ? false : true,
+                        isLast: detailList.length == index ? false : true,
                       );
                     },
                     childCount: detailList.length,

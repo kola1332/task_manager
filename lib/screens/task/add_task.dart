@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/data/data_source.dart';
-import 'package:task_manager/data/rep.dart';
 import 'package:task_manager/screens/detail/detail.dart';
 
-import '../../bloc/task_cubit.dart';
-import '../../bloc/task_state.dart';
+import '../../cubit/task_cubit.dart';
+import '../../cubit/task_state.dart';
 import '../../constants/colors.dart';
 import '../../models/task.dart';
 import '../detail/widgets/date_picker.dart';
@@ -29,7 +28,7 @@ class _AddTaskState extends State<AddTask> {
   late Desk newDesk;
   String data = 'Имя вашей задачи';
   Color colorTab = Colors.grey.shade300;
-  late double wh;
+  late double colorSize;
 
   void _selectTime() async {
     final TimeOfDay? newTime = await showTimePicker(
@@ -39,7 +38,6 @@ class _AddTaskState extends State<AddTask> {
     if (newTime != null) {
       setState(() {
         time1 = newTime;
-        // newDesk.time = newTime.format(context);
         newDesk.newTime = newTime;
       });
     }
@@ -63,7 +61,7 @@ class _AddTaskState extends State<AddTask> {
     time1 = const TimeOfDay(hour: 0, minute: 0);
     time2 = const TimeOfDay(hour: 0, minute: 0);
     newDesk = Desk(title: '');
-    wh = 0;
+    colorSize = 0;
     super.initState();
   }
 
@@ -83,7 +81,6 @@ class _AddTaskState extends State<AddTask> {
 
       final List<DropdownMenuEntry<Chapter>> tasksEntry =
           <DropdownMenuEntry<Chapter>>[];
-      // Chapter chapter = Chapter(widget.task.title!);
       int indexChap = 0;
 
       for (int i = 0; i < tasksList.length; i++) {
@@ -97,7 +94,6 @@ class _AddTaskState extends State<AddTask> {
           }
         }
       }
-      // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
 
       return Scaffold(
         appBar: AppBar(
@@ -107,14 +103,6 @@ class _AddTaskState extends State<AddTask> {
           toolbarHeight: 0,
         ),
         backgroundColor: Colors.white,
-        // body: Container(
-        //   decoration: const BoxDecoration(
-        //     // image: DecorationImage(
-        //     //     image: ExactAssetImage('assets/space.jpg'),
-        //     //     //  NetworkImage(
-        //     //     //     'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
-        //     //     fit: BoxFit.cover),
-        //   ),
         body: SafeArea(
           child: ListView(
             children: [
@@ -122,15 +110,7 @@ class _AddTaskState extends State<AddTask> {
                 padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: _buildPresentationContainer(context),
               ),
-              // const SizedBox(height: 7),
               Container(
-                  // height: 70,
-                  // decoration: const BoxDecoration(
-                  //   color: Colors.white,
-                  //   borderRadius: BorderRadius.only(
-                  //       topLeft: Radius.circular(40),
-                  //       topRight: Radius.circular(40)),
-                  // ),
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -160,9 +140,6 @@ class _AddTaskState extends State<AddTask> {
                           const errorTitle = SnackBar(
                             content: Text('Введите название задачи'),
                           );
-                          // const errorChapter = SnackBar(
-                          //   content: Text('Введите раздел'),
-                          // );
                           const errorTime = SnackBar(
                             content: Text('Введите время'),
                           );
@@ -170,9 +147,6 @@ class _AddTaskState extends State<AddTask> {
                           if (newDesk.title == '') {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(errorTitle);
-                            // } else if (newDesk.chap == null) {
-                            // ScaffoldMessenger.of(context)
-                            //     .showSnackBar(errorChapter);
                           } else if (newDesk.newTime == null) {
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(errorTime);
@@ -186,13 +160,12 @@ class _AddTaskState extends State<AddTask> {
                                   task = taskChap;
                                 }
                               }
-                              print(newDesk.title);
+                              print(newDesk.title); // ? del
                               taskLocalDataSourceImpl.deskToSql(newDesk);
                             }
 
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => DetailPage(task)));
-                            // Navigator.pop(context);
                           }
                         },
                         child: const Text('Готово'),
@@ -220,7 +193,7 @@ class _AddTaskState extends State<AddTask> {
           TextButton(
             onPressed: () {
               setState(() {
-                wh = 0;
+                colorSize = 0;
                 colorTab = kYellowLight;
               });
               newDesk.bgColor = kYellowLight;
@@ -228,8 +201,8 @@ class _AddTaskState extends State<AddTask> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 400),
-              height: wh == 0 ? 45 : 33,
-              width: wh == 0 ? 45 : 33,
+              height: colorSize == 0 ? 45 : 33,
+              width: colorSize == 0 ? 45 : 33,
               decoration: BoxDecoration(
                   color: kYellowDark,
                   borderRadius: BorderRadius.circular(50),
@@ -242,7 +215,7 @@ class _AddTaskState extends State<AddTask> {
           TextButton(
             onPressed: () {
               setState(() {
-                wh = 1;
+                colorSize = 1;
                 colorTab = kRedLight;
               });
               newDesk.bgColor = kRedLight;
@@ -250,8 +223,8 @@ class _AddTaskState extends State<AddTask> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 400),
-              height: wh == 1 ? 45 : 33,
-              width: wh == 1 ? 45 : 33,
+              height: colorSize == 1 ? 45 : 33,
+              width: colorSize == 1 ? 45 : 33,
               decoration: BoxDecoration(
                   color: kRedDark,
                   borderRadius: BorderRadius.circular(50),
@@ -264,7 +237,7 @@ class _AddTaskState extends State<AddTask> {
           TextButton(
             onPressed: () {
               setState(() {
-                wh = 2;
+                colorSize = 2;
                 colorTab = kBlueLight;
               });
               newDesk.bgColor = kBlueLight;
@@ -272,8 +245,8 @@ class _AddTaskState extends State<AddTask> {
             },
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 400),
-              height: wh == 2 ? 45 : 33,
-              width: wh == 2 ? 45 : 33,
+              height: colorSize == 2 ? 45 : 33,
+              width: colorSize == 2 ? 45 : 33,
               decoration: BoxDecoration(
                   color: kBlueDark,
                   borderRadius: BorderRadius.circular(50),
@@ -283,26 +256,6 @@ class _AddTaskState extends State<AddTask> {
                   )),
             ),
           ),
-          // TextButton(
-          //   onPressed: () {
-          //     setState(() {
-          //       colorTab = Colors.green.shade100;
-          //     });
-          //     newDesk.bgColor = Colors.green.shade100;
-          //     newDesk.tlColor = Colors.green;
-          //   },
-          //   child: Container(
-          //     height: 33,
-          //     width: 33,
-          //     decoration: BoxDecoration(
-          //         color: Colors.green.shade100,
-          //         borderRadius: BorderRadius.circular(50),
-          //         border: Border.all(
-          //           color: Colors.black,
-          //           width: 1.3,
-          //         )),
-          //   ),
-          // ),
         ],
       ),
     );
@@ -316,14 +269,6 @@ class _AddTaskState extends State<AddTask> {
       decoration: BoxDecoration(
         color: colorTab,
         borderRadius: BorderRadius.circular(20),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: colorTab.withOpacity(0.5),
-        //     spreadRadius: 2,
-        //     blurRadius: 12,
-        //     offset: const Offset(3, 3),
-        //   ),
-        // ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

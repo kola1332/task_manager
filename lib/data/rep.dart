@@ -4,7 +4,6 @@ import 'data_source.dart';
 import 'package:dartz/dartz.dart';
 
 class Repository {
-  // List<Task> tasks = [];
   final TaskLocalDataSource taskLocalDataSource;
 
   Repository(this.taskLocalDataSource);
@@ -13,13 +12,12 @@ class Repository {
     List<TaskModel> taskList;
     try {
       taskList = await taskLocalDataSource.getSql();
-      if (taskList == [] || taskList.isEmpty) {
+      if (taskList.isEmpty) {
         throw Exception();
       } else {
         return Right(taskList);
       }
     } catch (e) {
-      // List<TaskModel> taskList = await remoteDataSource.getTask();
       taskList = TaskModel.generateTasks();
       await taskLocalDataSource.taskToSql(taskList);
       taskList = await taskLocalDataSource.getSql();

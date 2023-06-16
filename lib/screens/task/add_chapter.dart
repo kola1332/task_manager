@@ -65,19 +65,6 @@ class _AddChapterState extends State<AddChapter> {
     }
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      // ),
-      // body: Container(decoration: const BoxDecoration(
-      //     // image: DecorationImage(
-      //     //   image: 
-      //     //   ExactAssetImage('assets/space.jpg'),
-      //     //   // NetworkImage(
-      //     //   //     'http://2.bp.blogspot.com/-71RcIkmOttQ/UFS4f7e5i0I/AAAAAAAAEMo/7yGk6nPIUA0/s1600/m44portada2.jpg'),
-      //     // fit: BoxFit.cover
-      //     // ),
-      //   ),
-        // child:
          body: SafeArea(
           child: Column(
             children: [
@@ -142,7 +129,6 @@ class _AddChapterState extends State<AddChapter> {
                           height: 35,
                           decoration: BoxDecoration(
                             color: colorIcon,
-                            // border: Border.all(color: Colors.black26),
                             borderRadius: BorderRadius.circular(35),
                             boxShadow: [
                               BoxShadow(
@@ -164,7 +150,6 @@ class _AddChapterState extends State<AddChapter> {
                           height: 35,
                           decoration: BoxDecoration(
                             color: colorTab,
-                            // border: Border.all(color: Colors.black26),
                             borderRadius: BorderRadius.circular(35),
                             boxShadow: [
                               BoxShadow(

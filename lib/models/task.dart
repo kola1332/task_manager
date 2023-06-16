@@ -34,7 +34,6 @@ class TaskModel {
           done: 1,
           desc: [
             Desk(
-              // time: '9:00',
               newTime: const TimeOfDay(hour: 4, minute: 0),
               title: 'Go for a walk with dog',
               slot: '9:00 - 10:00',
@@ -43,7 +42,6 @@ class TaskModel {
               chap: 'Personal',
             ),
             Desk(
-              // time: '10:00',
               newTime: const TimeOfDay(hour: 10, minute: 0),
               title: 'Shot on Dribble',
               slot: '9:00 - 10:00',
@@ -51,18 +49,7 @@ class TaskModel {
               bgColor: kBlueLight,
               chap: 'Personal',
             ),
-            // Desk(
-            //   time: '11:00',
-            //   newTime: const TimeOfDay(hour: 8, minute: 0),
-            //   tlColor: kBlueDark,
-            //   bgColor: kBlueLight,
-            // ),
-            // Desk(
-            //   time: '12:00',
-            //   newTime: const TimeOfDay(hour: 2, minute: 0),
-            // ),
             Desk(
-              // time: '13:00',
               newTime: const TimeOfDay(hour: 13, minute: 0),
               title: 'Call with client',
               slot: '13:00 - 14:00',
@@ -70,14 +57,6 @@ class TaskModel {
               bgColor: kYellowLight,
               chap: 'Personal',
             ),
-            // Desk(
-            //   time: '14:00',
-            //   newTime: const TimeOfDay(hour: 1, minute: 0),
-            // ),
-            // Desk(
-            //   time: '15:00',
-            //   newTime: const TimeOfDay(hour: 15, minute: 0),
-            // ),
           ]),
       TaskModel(
         iconData: Icons.cases_rounded,
@@ -98,7 +77,6 @@ class TaskModel {
         done: 0,
         desc: [
           Desk(
-            // time: '13:00',
             newTime: const TimeOfDay(hour: 13, minute: 0),
             title: 'Call with client',
             slot: '13:00 - 14:00',
@@ -108,13 +86,11 @@ class TaskModel {
           )
         ],
       ),
-      // TaskModel(isLast: true),
     ];
   }
 }
 
 class Desk {
-  // String time;
   TimeOfDay? newTime;
   String title;
   String? slot;
@@ -123,7 +99,6 @@ class Desk {
   String? chap;
 
   Desk({
-    // required this.time,
     this.tlColor,
     this.bgColor,
     required this.title,

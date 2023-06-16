@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task_manager/screens/home/widgets/go_premium.dart';
 import 'package:task_manager/screens/home/widgets/tasks.dart';
-import '../../bloc/task_cubit.dart';
-import '../../bloc/task_state.dart';
+import '../../cubit/task_cubit.dart';
+import '../../cubit/task_state.dart';
 import '../../models/task.dart';
 
 class HomePage extends StatelessWidget {
-  List<TaskModel>? tasksList;
+  // List<TaskModel>? tasksList;
 
   @override
   Widget build(BuildContext context) {
-    // tasksList ??= TaskModel.generateTasks();
     return BlocBuilder<TaskCubit, TaskState>(builder: (context, state) {
       List<TaskModel> tasksList;
       if (state is TaskStateLoading) {
@@ -38,20 +37,6 @@ class HomePage extends StatelessWidget {
             ],
           ),
           bottomNavigationBar: _buildBottomNavigationBar(),
-          // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          // floatingActionButton: FloatingActionButton(
-          //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          //   backgroundColor: Colors.black,
-          //   elevation: 0,
-          //   onPressed: () {
-          //     Navigator.of(context)
-          //         .push(MaterialPageRoute(builder: (context) => AddTask()));
-          //   },
-          //   child: const Icon(
-          //     Icons.add,
-          //     size: 35,
-          //   ),
-          // ),
         );
       } else {
         return const Center(
