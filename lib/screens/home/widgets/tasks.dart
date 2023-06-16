@@ -4,9 +4,9 @@ import 'package:task_manager/models/task.dart';
 import 'package:task_manager/screens/detail/detail.dart';
 
 class Tasks extends StatelessWidget {
-  List<TaskModel> tasksList;
+  final List<TaskModel> tasksList;
 
-  Tasks({super.key, required this.tasksList});
+  const Tasks({super.key, required this.tasksList});
 
   @override
   Widget build(BuildContext context) {
